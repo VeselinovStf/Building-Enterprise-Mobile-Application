@@ -25,6 +25,14 @@ Pluralsight "Building an Enterprise Mobile Application with Xamarin.Forms" cours
 - Accessing Native Device Features and Controls
 - Testing the Setup with Unit Tests
 
+### Course Duration: 3h 1m
+
+### Status
+
+- On going
+
+# Course Project Info
+
 ## Course Start up project
 - Provided Backend REST API - Bethany's Pie Shop - Catalog API
 
@@ -82,6 +90,7 @@ Pluralsight "Building an Enterprise Mobile Application with Xamarin.Forms" cours
 - BethanysPieShop.API - Backend API
 
 #### Mobile
+
 - BethanysPieShop.Core - Share .NET Standart 2.0 Code
 - BethanysPieShop.Droid - Android App 
 - BethanysPieShop.Core - iOS App
@@ -90,7 +99,5 @@ Pluralsight "Building an Enterprise Mobile Application with Xamarin.Forms" cours
 
 - BethanysPieShop.UnitTests - Shared Code Unit Tests
 
-#### Duration: 3h 1m
 
-## Status
 
