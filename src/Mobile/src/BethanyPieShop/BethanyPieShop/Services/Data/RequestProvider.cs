@@ -1,7 +1,6 @@
 ﻿using BethanyPieShop.Core.Contracts;
 using BethanyPieShop.Core.Exceptions;
 using Newtonsoft.Json;
-using Polly;
 using System;
 using System.Diagnostics;
 using System.Net;
@@ -13,6 +12,13 @@ namespace BethanyPieShop.Core.Services.Data
 {
     public class RequestProvider : IRequestProvider
     {
+        private readonly IPolicyStrategy _policyStrategy;
+
+        public RequestProvider(IPolicyStrategy policyStrategy)
+        {
+            _policyStrategy = policyStrategy;
+        }
+
         public async Task<T> GetAsync<T>(string uri, string authToken = "")
         {
             try
@@ -20,18 +26,9 @@ namespace BethanyPieShop.Core.Services.Data
                 HttpClient httpClient = CreateHttpClient(uri);
                 string jsonResult = string.Empty;
 
-                var responseMessage =  await Policy
-                     .Handle<WebException>(ex =>
-                     {
-                         Debug.WriteLine($"{ex.GetType().Name + " : " + ex.Message}");
-                         return true;
-                     })
-                     .WaitAndRetryAsync
-                     (
-                         5,
-                         retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt))
-                     )
-                     .ExecuteAsync(async () => await httpClient.GetAsync(uri));
+                var responseMessage = await _policyStrategy
+                    .WaitToRetryAsyncStrategy<HttpResponseMessage,HttpClient>(
+                            async () => await httpClient.GetAsync(uri),5);
 
                 if (responseMessage.IsSuccessStatusCode)
                 {
@@ -52,6 +49,45 @@ namespace BethanyPieShop.Core.Services.Data
             }
             catch (Exception e)
             {
+                Debug.WriteLine($"{ e.GetType().Name + " : " + e.Message}");
+                throw;
+            }
+        }
+
+        public async Task<TResponse> PostAsync<TRequest, TResponse>(string uri, TRequest data, string authToken = "")
+        {
+            try
+            {
+                HttpClient httpClient = CreateHttpClient(uri);
+
+                var content = new StringContent(JsonConvert.SerializeObject(data));
+                content.Headers.ContentType = new MediaTypeWithQualityHeaderValue("application/json");
+
+                string jsonResult = string.Empty;
+
+                var responseMessage = await _policyStrategy
+                    .WaitToRetryAsyncStrategy<HttpResponseMessage, HttpClient>(
+                            async () => await httpClient.PostAsync(uri, content), 5);
+
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    jsonResult =
+                        await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+                    var json = JsonConvert.DeserializeObject<TResponse>(jsonResult);
+                    return json;
+                }
+
+                if (responseMessage.StatusCode == HttpStatusCode.Forbidden ||
+                    responseMessage.StatusCode == HttpStatusCode.Unauthorized)
+                {
+                    throw new ServiceAuthenticationException(jsonResult);
+                }
+
+                throw new HttpRequestExceptionExeption(responseMessage.StatusCode, jsonResult);
+            }
+            catch (Exception e)
+            {
+
                 Debug.WriteLine($"{ e.GetType().Name + " : " + e.Message}");
                 throw;
             }

@@ -1,13 +1,10 @@
-﻿using Akavache;
-using BethanyPieShop.Core.CacheStrategy;
-using BethanyPieShop.Core.Constants.CacheStrategy;
+﻿using BethanyPieShop.Core.Constants.CacheStrategy;
 using BethanyPieShop.Core.Constants.Service.Data;
 using BethanyPieShop.Core.Contracts;
 using BethanyPieShop.Core.Exceptions;
 using BethanyPieShop.Core.Models;
 using System;
 using System.Collections.Generic;
-using System.Reactive.Linq;
 using System.Threading.Tasks;
 
 namespace BethanyPieShop.Core.Services.Data
