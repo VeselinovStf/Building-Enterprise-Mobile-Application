@@ -93,6 +93,45 @@ namespace BethanyPieShop.Core.Services.Data
             }
         }
 
+        public async Task<T> PostAsync<T>(string uri,T data, string authToken = "")
+        {
+            try
+            {
+                HttpClient httpClient = CreateHttpClient(uri);
+
+                var content = new StringContent(JsonConvert.SerializeObject(data));
+                content.Headers.ContentType = new MediaTypeWithQualityHeaderValue("application/json");
+
+                string jsonResult = string.Empty;
+
+                var responseMessage = await _policyStrategy
+                    .WaitToRetryAsyncStrategy<HttpResponseMessage, HttpClient>(
+                            async () => await httpClient.PostAsync(uri, content), 5);
+
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    jsonResult =
+                        await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+                    var json = JsonConvert.DeserializeObject<T>(jsonResult);
+                    return json;
+                }
+
+                if (responseMessage.StatusCode == HttpStatusCode.Forbidden ||
+                    responseMessage.StatusCode == HttpStatusCode.Unauthorized)
+                {
+                    throw new ServiceAuthenticationException(jsonResult);
+                }
+
+                throw new HttpRequestExceptionExeption(responseMessage.StatusCode, jsonResult);
+            }
+            catch (Exception e)
+            {
+
+                Debug.WriteLine($"{ e.GetType().Name + " : " + e.Message}");
+                throw;
+            }
+        }
+
         private HttpClient CreateHttpClient(string token = "") 
         { 
             var httpClient = new HttpClient();
