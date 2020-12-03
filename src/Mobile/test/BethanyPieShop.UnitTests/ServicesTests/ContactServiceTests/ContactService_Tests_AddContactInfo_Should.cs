@@ -63,7 +63,7 @@ namespace BethanyPieShop.UnitTests.ServicesTests.ContactServiceTests
 
             var contactService = new ContactDataService(requestProviderMock.Object);
 
-            Assert.ThrowsAsync<ContactException>(
+            Assert.ThrowsAsync<ContactDataException>(
                 async () => await contactService.AddContactInfoAsync(message, email));
         }
 
@@ -90,7 +90,7 @@ namespace BethanyPieShop.UnitTests.ServicesTests.ContactServiceTests
 
             var contactService = new ContactDataService(requestProviderMock.Object);
 
-            Assert.ThrowsAsync<ContactException>(
+            Assert.ThrowsAsync<ContactDataException>(
                 async () => await contactService.AddContactInfoAsync(message, email));
         }
     }

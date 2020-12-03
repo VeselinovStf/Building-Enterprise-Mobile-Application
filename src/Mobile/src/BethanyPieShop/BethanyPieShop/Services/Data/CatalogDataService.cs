@@ -46,7 +46,7 @@ namespace BethanyPieShop.Core.Services.Data
             }
             catch (Exception ex)
             {
-                throw new DataServiceException(ex.Message);
+                throw new CatalogDataServiceException(ex.Message);
             }
         }
     }

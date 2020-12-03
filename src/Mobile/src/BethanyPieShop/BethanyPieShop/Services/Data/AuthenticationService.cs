@@ -50,7 +50,7 @@ namespace BethanyPieShop.Core.Services.Data
             }
             catch (Exception ex)
             {
-                throw new AuthenticationException(ex.Message);
+                throw new AuthenticationDataException(ex.Message);
             }
         }
 
@@ -99,7 +99,7 @@ namespace BethanyPieShop.Core.Services.Data
             }
             catch (Exception ex)
             {
-                throw new AuthenticationException(ex.Message);
+                throw new AuthenticationDataException(ex.Message);
             }
         }
     }

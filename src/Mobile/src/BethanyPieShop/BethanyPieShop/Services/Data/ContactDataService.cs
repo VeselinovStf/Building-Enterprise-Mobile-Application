@@ -44,7 +44,7 @@ namespace BethanyPieShop.Core.Services.Data
             catch (Exception ex)
             {
 
-                throw new ContactException(ex.Message);
+                throw new ContactDataException(ex.Message);
             }
         }
     }

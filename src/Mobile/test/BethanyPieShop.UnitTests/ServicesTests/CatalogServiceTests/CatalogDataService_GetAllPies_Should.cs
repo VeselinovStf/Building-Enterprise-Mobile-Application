@@ -45,7 +45,7 @@ namespace BethanyPieShop.UnitTests.ServicesTests.CatalogServiceTests
             ICatalogDataService dataService
                 = new CatalogDataService(requestProviderMock.Object, casheMock.Object);
          
-              Assert.ThrowsAsync<DataServiceException>(async() => await dataService.GetAllPiesAsync());          
+              Assert.ThrowsAsync<CatalogDataServiceException>(async() => await dataService.GetAllPiesAsync());          
         }
     }
 }

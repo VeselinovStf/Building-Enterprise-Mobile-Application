@@ -88,7 +88,7 @@ namespace BethanyPieShop.UnitTests.ServicesTests.AuthenticationServiceTests
             var authenticationService = new AuthenticationService(requestProviderMock.Object, settingsMock.Object);
 
           
-            Assert.ThrowsAsync<AuthenticationException>(
+            Assert.ThrowsAsync<AuthenticationDataException>(
                 async () => await authenticationService.RegisterAsync(firstName, lastName, email, userName, password));
         }
 
@@ -126,7 +126,7 @@ namespace BethanyPieShop.UnitTests.ServicesTests.AuthenticationServiceTests
             var authenticationService = new AuthenticationService(requestProviderMock.Object, settingsMock.Object);
 
            
-            Assert.ThrowsAsync<AuthenticationException>(
+            Assert.ThrowsAsync<AuthenticationDataException>(
                 async () => await authenticationService.RegisterAsync(firstName, lastName, email, userName, password));
         }
 
@@ -164,7 +164,7 @@ namespace BethanyPieShop.UnitTests.ServicesTests.AuthenticationServiceTests
             var authenticationService = new AuthenticationService(requestProviderMock.Object, settingsMock.Object);
 
             
-            Assert.ThrowsAsync<AuthenticationException>(
+            Assert.ThrowsAsync<AuthenticationDataException>(
                 async () => await authenticationService.RegisterAsync(firstName, lastName, email, userName, password));
         }
 
@@ -202,7 +202,7 @@ namespace BethanyPieShop.UnitTests.ServicesTests.AuthenticationServiceTests
             var authenticationService = new AuthenticationService(requestProviderMock.Object, settingsMock.Object);
 
           
-            Assert.ThrowsAsync<AuthenticationException>(
+            Assert.ThrowsAsync<AuthenticationDataException>(
                 async () => await authenticationService.RegisterAsync(firstName, lastName, email, userName, password));
         }
 
@@ -240,7 +240,7 @@ namespace BethanyPieShop.UnitTests.ServicesTests.AuthenticationServiceTests
             var authenticationService = new AuthenticationService(requestProviderMock.Object, settingsMock.Object);
 
            
-            Assert.ThrowsAsync<AuthenticationException>(
+            Assert.ThrowsAsync<AuthenticationDataException>(
                 async () => await authenticationService.RegisterAsync(firstName, lastName, email, userName, password));
         }
 
