@@ -1,4 +1,5 @@
 ﻿using BethanyPieShop.Core.Contracts;
+using BethanyPieShop.Core.Exceptions;
 using BethanyPieShop.Core.Models;
 using BethanyPieShop.Core.Services.Data;
 using Moq;
@@ -23,9 +24,9 @@ namespace BethanyPieShop.UnitTests.ServicesTests.OrderServiceTests
                         .ToList()
                         .FirstOrDefault();
 
-            var orderAddressCity = "City";
-            var orderAddressNumber = "+123456778";
-            var orderAddressStreet = "SampleStreet";
+            var orderAddressCity = "AI";
+            var orderAddressNumber = "+123";
+            var orderAddressStreet = "Samp";
             var orderAddressZipCode = "5100";
 
             var pies = new List<Pie>()
@@ -90,8 +91,548 @@ namespace BethanyPieShop.UnitTests.ServicesTests.OrderServiceTests
             Assert.AreEqual(orderAddedPie.Price, singlePie.Price);
             Assert.AreEqual(orderAddedPie.ShortDescription, singlePie.ShortDescription);
             Assert.AreEqual(orderAddedPie.AllergyInformation, singlePie.AllergyInformation);
-            
+        }
 
+
+        [Test]
+        public void Throws_When_Invalid_Order_Is_Passed()
+        {
+            Order order = null;
+
+            var requestProviderMock = new Mock<IRequestProvider>();
+            requestProviderMock
+                .Setup(e => e.PostAsync<Order>(It.IsAny<string>(), It.IsAny<Order>(), It.IsAny<string>()))
+                .Returns(Task.FromResult<Order>(order));
+
+            var orderDataService = new OrderDataService(requestProviderMock.Object);
+
+            Assert.ThrowsAsync<OrderDataServiceException>(
+                async () => await orderDataService.AddOrderAsync(order));
+        }     
+
+        [Test]
+        public void Throws_When_Invalid_Order_Address_Is_Passed()
+        {
+            var orderTotal = 123;
+            var userId = "U1";
+            var orderId = "O1";
+            var singlePie = PieListMock
+                        .MockPieCatalog()
+                        .ToList()
+                        .FirstOrDefault();
+
+
+            var pies = new List<Pie>()
+            {
+                singlePie
+            };
+
+            Address orderAddress = null;
+           
+            var order = new Order()
+            {
+                Address = orderAddress,
+                OrderTotal = orderTotal,
+                Pies = pies,
+                UserId = userId,
+                OrderId = orderId
+            };
+
+
+            var requestProviderMock = new Mock<IRequestProvider>();
+            requestProviderMock
+                .Setup(e => e.PostAsync<Order>(It.IsAny<string>(), It.IsAny<Order>(), It.IsAny<string>()))
+                .Returns(Task.FromResult<Order>(order));
+
+            var orderDataService = new OrderDataService(requestProviderMock.Object);
+
+            Assert.ThrowsAsync<OrderDataServiceException>(
+                async () => await orderDataService.AddOrderAsync(order));
+        }
+
+        [Test]
+        public void Throws_When_Invalid_Order_Pies_Is_Passed()
+        {
+            var orderTotal = 123;
+            var userId = "U1";
+            var orderId = "O1";
+           
+
+            var orderAddressCity = "City";
+            var orderAddressNumber = "+123456778";
+            var orderAddressStreet = "SampleStreet";
+            var orderAddressZipCode = "5100";
+
+            List<Pie> pies = null;
+
+            var orderAddress = new Address()
+            {
+                City = orderAddressCity,
+                Number = orderAddressNumber,
+                Street = orderAddressStreet,
+                ZipCode = orderAddressZipCode
+            };
+
+            var order = new Order()
+            {
+                Address = orderAddress,
+                OrderTotal = orderTotal,
+                Pies = pies,
+                UserId = userId,
+                OrderId = orderId
+            };
+
+
+            var requestProviderMock = new Mock<IRequestProvider>();
+            requestProviderMock
+                .Setup(e => e.PostAsync<Order>(It.IsAny<string>(), It.IsAny<Order>(), It.IsAny<string>()))
+                .Returns(Task.FromResult<Order>(order));
+
+            var orderDataService = new OrderDataService(requestProviderMock.Object);
+
+            Assert.ThrowsAsync<OrderDataServiceException>(
+                async () => await orderDataService.AddOrderAsync(order));
+        }
+
+        [Test]
+        public void Throws_When_Order_Pies_Are_Missing()
+        {
+            var orderTotal = 123;
+            var userId = "U1";
+            var orderId = "O1";
+
+
+            var orderAddressCity = "City";
+            var orderAddressNumber = "+123456778";
+            var orderAddressStreet = "SampleStreet";
+            var orderAddressZipCode = "5100";
+
+            List<Pie> pies = new List<Pie>();
+
+            var orderAddress = new Address()
+            {
+                City = orderAddressCity,
+                Number = orderAddressNumber,
+                Street = orderAddressStreet,
+                ZipCode = orderAddressZipCode
+            };
+
+            var order = new Order()
+            {
+                Address = orderAddress,
+                OrderTotal = orderTotal,
+                Pies = pies,
+                UserId = userId,
+                OrderId = orderId
+            };
+
+
+            var requestProviderMock = new Mock<IRequestProvider>();
+            requestProviderMock
+                .Setup(e => e.PostAsync<Order>(It.IsAny<string>(), It.IsAny<Order>(), It.IsAny<string>()))
+                .Returns(Task.FromResult<Order>(order));
+
+            var orderDataService = new OrderDataService(requestProviderMock.Object);
+
+            Assert.ThrowsAsync<OrderDataServiceException>(
+                async () => await orderDataService.AddOrderAsync(order));
+        }
+
+        [TestCase("")]
+        [TestCase(null)]
+        public void Throws_When_Invalid_Order_Id_Is_Passed(string id)
+        {
+            var orderTotal = 123;
+            var userId = "U1";
+            var orderId = id;
+
+
+            var orderAddressCity = "City";
+            var orderAddressNumber = "+123456778";
+            var orderAddressStreet = "SampleStreet";
+            var orderAddressZipCode = "5100";
+
+            var singlePie = PieListMock
+                       .MockPieCatalog()
+                       .ToList()
+                       .FirstOrDefault();
+
+
+            var pies = new List<Pie>()
+            {
+                singlePie
+            };
+
+
+            var orderAddress = new Address()
+            {
+                City = orderAddressCity,
+                Number = orderAddressNumber,
+                Street = orderAddressStreet,
+                ZipCode = orderAddressZipCode
+            };
+
+            var order = new Order()
+            {
+                Address = orderAddress,
+                OrderTotal = orderTotal,
+                Pies = pies,
+                UserId = userId,
+                OrderId = orderId
+            };
+
+
+            var requestProviderMock = new Mock<IRequestProvider>();
+            requestProviderMock
+                .Setup(e => e.PostAsync<Order>(It.IsAny<string>(), It.IsAny<Order>(), It.IsAny<string>()))
+                .Returns(Task.FromResult<Order>(order));
+
+            var orderDataService = new OrderDataService(requestProviderMock.Object);
+
+            Assert.ThrowsAsync<OrderDataServiceException>(
+                async () => await orderDataService.AddOrderAsync(order));
+        }
+
+        [TestCase("")]
+        [TestCase(null)]
+        public void Throws_When_Invalid_User_Id_Is_Passed(string id)
+        {
+            var orderTotal = 123;
+            var userId = id;
+            var orderId = "o1";
+
+
+            var orderAddressCity = "City";
+            var orderAddressNumber = "+123456778";
+            var orderAddressStreet = "SampleStreet";
+            var orderAddressZipCode = "5100";
+
+            var singlePie = PieListMock
+                       .MockPieCatalog()
+                       .ToList()
+                       .FirstOrDefault();
+
+
+            var pies = new List<Pie>()
+            {
+                singlePie
+            };
+
+
+            var orderAddress = new Address()
+            {
+                City = orderAddressCity,
+                Number = orderAddressNumber,
+                Street = orderAddressStreet,
+                ZipCode = orderAddressZipCode
+            };
+
+            var order = new Order()
+            {
+                Address = orderAddress,
+                OrderTotal = orderTotal,
+                Pies = pies,
+                UserId = userId,
+                OrderId = orderId
+            };
+
+
+            var requestProviderMock = new Mock<IRequestProvider>();
+            requestProviderMock
+                .Setup(e => e.PostAsync<Order>(It.IsAny<string>(), It.IsAny<Order>(), It.IsAny<string>()))
+                .Returns(Task.FromResult<Order>(order));
+
+            var orderDataService = new OrderDataService(requestProviderMock.Object);
+
+            Assert.ThrowsAsync<OrderDataServiceException>(
+                async () => await orderDataService.AddOrderAsync(order));
+        }
+
+        [TestCase(0)]
+        [TestCase(-1)]
+        public void Throws_When_Invalid_OrderTotal_Is_Passed(decimal total)
+        {
+            var orderTotal = total;
+            var userId = "u1";
+            var orderId = "o1";
+
+
+            var orderAddressCity = "City";
+            var orderAddressNumber = "+123456778";
+            var orderAddressStreet = "SampleStreet";
+            var orderAddressZipCode = "5100";
+
+            var singlePie = PieListMock
+                       .MockPieCatalog()
+                       .ToList()
+                       .FirstOrDefault();
+
+
+            var pies = new List<Pie>()
+            {
+                singlePie
+            };
+
+
+            var orderAddress = new Address()
+            {
+                City = orderAddressCity,
+                Number = orderAddressNumber,
+                Street = orderAddressStreet,
+                ZipCode = orderAddressZipCode
+            };
+
+            var order = new Order()
+            {
+                Address = orderAddress,
+                OrderTotal = orderTotal,
+                Pies = pies,
+                UserId = userId,
+                OrderId = orderId
+            };
+
+
+            var requestProviderMock = new Mock<IRequestProvider>();
+            requestProviderMock
+                .Setup(e => e.PostAsync<Order>(It.IsAny<string>(), It.IsAny<Order>(), It.IsAny<string>()))
+                .Returns(Task.FromResult<Order>(order));
+
+            var orderDataService = new OrderDataService(requestProviderMock.Object);
+
+            Assert.ThrowsAsync<OrderDataServiceException>(
+                async () => await orderDataService.AddOrderAsync(order));
+        }
+
+        [TestCase("")]
+        [TestCase(null)]
+        [TestCase("A")]
+        public void Throws_When_Invalid_OrderAddressCity_Is_Passed(string addressCity)
+        {
+            var orderTotal = 123;
+            var userId = "o1";
+            var orderId = "o1";
+
+
+            var orderAddressCity = addressCity;
+            var orderAddressNumber = "+123456778";
+            var orderAddressStreet = "SampleStreet";
+            var orderAddressZipCode = "5100";
+
+            var singlePie = PieListMock
+                       .MockPieCatalog()
+                       .ToList()
+                       .FirstOrDefault();
+
+
+            var pies = new List<Pie>()
+            {
+                singlePie
+            };
+
+
+            var orderAddress = new Address()
+            {
+                City = orderAddressCity,
+                Number = orderAddressNumber,
+                Street = orderAddressStreet,
+                ZipCode = orderAddressZipCode
+            };
+
+            var order = new Order()
+            {
+                Address = orderAddress,
+                OrderTotal = orderTotal,
+                Pies = pies,
+                UserId = userId,
+                OrderId = orderId
+            };
+
+
+            var requestProviderMock = new Mock<IRequestProvider>();
+            requestProviderMock
+                .Setup(e => e.PostAsync<Order>(It.IsAny<string>(), It.IsAny<Order>(), It.IsAny<string>()))
+                .Returns(Task.FromResult<Order>(order));
+
+            var orderDataService = new OrderDataService(requestProviderMock.Object);
+
+            Assert.ThrowsAsync<OrderDataServiceException>(
+                async () => await orderDataService.AddOrderAsync(order));
+        }
+
+        [TestCase("")]
+        [TestCase(null)]
+        [TestCase("A")]
+        [TestCase("AV")]
+        [TestCase("AVA")]
+        public void Throws_When_Invalid_OrderAddressNumber_Is_Passed(string addressNumber)
+        {
+            var orderTotal = 123;
+            var userId = "o1";
+            var orderId = "o1";
+
+
+            var orderAddressCity = "City";
+            var orderAddressNumber = addressNumber;
+            var orderAddressStreet = "SampleStreet";
+            var orderAddressZipCode = "5100";
+
+            var singlePie = PieListMock
+                       .MockPieCatalog()
+                       .ToList()
+                       .FirstOrDefault();
+
+
+            var pies = new List<Pie>()
+            {
+                singlePie
+            };
+
+
+            var orderAddress = new Address()
+            {
+                City = orderAddressCity,
+                Number = orderAddressNumber,
+                Street = orderAddressStreet,
+                ZipCode = orderAddressZipCode
+            };
+
+            var order = new Order()
+            {
+                Address = orderAddress,
+                OrderTotal = orderTotal,
+                Pies = pies,
+                UserId = userId,
+                OrderId = orderId
+            };
+
+
+            var requestProviderMock = new Mock<IRequestProvider>();
+            requestProviderMock
+                .Setup(e => e.PostAsync<Order>(It.IsAny<string>(), It.IsAny<Order>(), It.IsAny<string>()))
+                .Returns(Task.FromResult<Order>(order));
+
+            var orderDataService = new OrderDataService(requestProviderMock.Object);
+
+            Assert.ThrowsAsync<OrderDataServiceException>(
+                async () => await orderDataService.AddOrderAsync(order));
+        }
+
+        [TestCase("")]
+        [TestCase(null)]
+        [TestCase("A")]
+        [TestCase("AV")]
+        [TestCase("AAA")]
+        [Test]
+        public void Throws_When_Invalid_OrderAddressStreet_Is_Passed(string addressStreet)
+        {
+            var orderTotal = 123;
+            var userId = "o1";
+            var orderId = "o1";
+
+
+            var orderAddressCity = "City";
+            var orderAddressNumber = "Addr";
+            var orderAddressStreet = addressStreet;
+            var orderAddressZipCode = "5100";
+
+            var singlePie = PieListMock
+                       .MockPieCatalog()
+                       .ToList()
+                       .FirstOrDefault();
+
+
+            var pies = new List<Pie>()
+            {
+                singlePie
+            };
+
+
+            var orderAddress = new Address()
+            {
+                City = orderAddressCity,
+                Number = orderAddressNumber,
+                Street = orderAddressStreet,
+                ZipCode = orderAddressZipCode
+            };
+
+            var order = new Order()
+            {
+                Address = orderAddress,
+                OrderTotal = orderTotal,
+                Pies = pies,
+                UserId = userId,
+                OrderId = orderId
+            };
+
+
+            var requestProviderMock = new Mock<IRequestProvider>();
+            requestProviderMock
+                .Setup(e => e.PostAsync<Order>(It.IsAny<string>(), It.IsAny<Order>(), It.IsAny<string>()))
+                .Returns(Task.FromResult<Order>(order));
+
+            var orderDataService = new OrderDataService(requestProviderMock.Object);
+
+            Assert.ThrowsAsync<OrderDataServiceException>(
+                async () => await orderDataService.AddOrderAsync(order));
+        }
+
+        [TestCase("")]
+        [TestCase(null)]
+        [TestCase("A")]
+        [TestCase("AV")]
+        [TestCase("AAA")]
+        [Test]
+        public void Throws_When_Invalid_OrderAddressZipCode_Is_Passed(string addressZipCode)
+        {
+            var orderTotal = 123;
+            var userId = "o1";
+            var orderId = "o1";
+
+
+            var orderAddressCity = "City";
+            var orderAddressNumber = "Addr";
+            var orderAddressStreet = "Strt";
+            var orderAddressZipCode = addressZipCode;
+
+            var singlePie = PieListMock
+                       .MockPieCatalog()
+                       .ToList()
+                       .FirstOrDefault();
+
+
+            var pies = new List<Pie>()
+            {
+                singlePie
+            };
+
+
+            var orderAddress = new Address()
+            {
+                City = orderAddressCity,
+                Number = orderAddressNumber,
+                Street = orderAddressStreet,
+                ZipCode = orderAddressZipCode
+            };
+
+            var order = new Order()
+            {
+                Address = orderAddress,
+                OrderTotal = orderTotal,
+                Pies = pies,
+                UserId = userId,
+                OrderId = orderId
+            };
+
+
+            var requestProviderMock = new Mock<IRequestProvider>();
+            requestProviderMock
+                .Setup(e => e.PostAsync<Order>(It.IsAny<string>(), It.IsAny<Order>(), It.IsAny<string>()))
+                .Returns(Task.FromResult<Order>(order));
+
+            var orderDataService = new OrderDataService(requestProviderMock.Object);
+
+            Assert.ThrowsAsync<OrderDataServiceException>(
+                async () => await orderDataService.AddOrderAsync(order));
         }
     }
 }

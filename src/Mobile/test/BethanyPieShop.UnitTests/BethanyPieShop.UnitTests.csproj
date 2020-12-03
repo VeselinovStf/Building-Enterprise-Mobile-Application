@@ -17,4 +17,8 @@
     <ProjectReference Include="..\..\src\BethanyPieShop\BethanyPieShop\BethanyPieShop.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ServicesTests\ShopingCartServiceTests\" />
+  </ItemGroup>
+
 </Project>

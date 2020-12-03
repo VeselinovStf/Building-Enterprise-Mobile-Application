@@ -26,13 +26,16 @@ namespace BethanyPieShop.Core.Services.Data
                 ValidationGuard.ObjectIsNull(order.Pies, $"Invalid {nameof(order.Pies)}");
 
                 ValidationGuard
+                   .ValueGreatherThenEqual(order.Pies.Count, 0, $"Invalid {order.Pies}");
+
+                ValidationGuard
                     .StringIsValidRange(order.OrderId, 1, $"Invalid {order.OrderId}");
 
                 ValidationGuard
                     .StringIsValidRange(order.UserId, 1, $"Invalid {order.OrderId}");
 
                 ValidationGuard
-                    .ValueGreatherThen(order.OrderTotal, 0, $"Invalid {order.OrderTotal}");
+                    .ValueGreatherThenEqual(order.OrderTotal, 0, $"Invalid {order.OrderTotal}");
 
                 ValidationGuard
                     .StringIsValidRange(order.Address.City, 2, $"Invalid {order.Address.City}");

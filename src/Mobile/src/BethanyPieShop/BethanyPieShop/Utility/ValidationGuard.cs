@@ -34,9 +34,9 @@ namespace BethanyPieShop.Core.Utility
             StringIsLessThen(str, lestThen, message);
         }
 
-        internal static void ValueGreatherThen(decimal orderTotal, int gt, string message)
+        internal static void ValueGreatherThenEqual(decimal orderTotal, int gt, string message)
         {
-            if (orderTotal < gt)
+            if (orderTotal <= gt)
             {
                 throw new ArgumentException(message);
             }
