@@ -49,5 +49,35 @@ namespace BethanyPieShop.Core.Services.Data
                 throw new CatalogDataServiceException(ex.Message);
             }
         }
+
+        public async Task<IList<Pie>> GetPiesOfTheWeekAsync()
+        {
+            try
+            {
+                List<Pie> piesFromCache = await _cache.GetCache<List<Pie>>(CacheNameContants.PiesOfTheWeek);
+
+                if (piesFromCache != null)
+                {
+                    return piesFromCache;
+                }
+
+                UriBuilder builder = new UriBuilder(ApiConstants.BaseApiUrl)
+                {
+                    Path = ApiConstants.PiesOfTheWeekEndpoint
+                };
+
+                var pies = await _request.GetAsync<List<Pie>>(builder.ToString());
+
+                await _cache.InsertObject(CacheNameContants.PiesOfTheWeek, pies, DateTimeOffset.Now.AddSeconds(20));
+
+                return pies;
+            }
+            catch (Exception ex)
+            {
+
+                throw new CatalogDataServiceException(ex.Message);
+            }
+           
+        }
     }
 }

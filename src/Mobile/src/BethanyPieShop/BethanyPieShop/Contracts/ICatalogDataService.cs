@@ -7,5 +7,7 @@ namespace BethanyPieShop.Core.Contracts
     public interface ICatalogDataService
     {
         Task<IList<Pie>> GetAllPiesAsync();
+
+        Task<IList<Pie>> GetPiesOfTheWeekAsync();
     }
 }

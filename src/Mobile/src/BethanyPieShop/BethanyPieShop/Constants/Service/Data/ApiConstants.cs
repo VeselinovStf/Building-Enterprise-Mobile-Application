@@ -10,5 +10,6 @@
         public const string ShoppingCartEndpoint = "api/shoppingcart";
         public const string AddShoppingCartItemEndpoint = "api/shoppingcart/";
         public const string AuthenticateEndpoint = "api/authentication/authenticate";
+        public const string PiesOfTheWeekEndpoint = "api/catalog/piesoftheweek/";
     }
 }
