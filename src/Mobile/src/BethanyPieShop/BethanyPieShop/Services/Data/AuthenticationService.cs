@@ -40,7 +40,7 @@ namespace BethanyPieShop.Core.Services.Data
 
                 UriBuilder builder = new UriBuilder(ApiConstants.BaseApiUrl)
                 {
-                    Path = ApiConstants.RegisterEndpoint
+                    Path = ApiConstants.AuthenticateEndpoint
                 };
 
                 var requestResult = await this._request

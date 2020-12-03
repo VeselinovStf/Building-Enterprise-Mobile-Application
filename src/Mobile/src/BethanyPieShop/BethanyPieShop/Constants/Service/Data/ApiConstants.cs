@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BethanyPieShop.Core.Constants.Service.Data
+﻿namespace BethanyPieShop.Core.Constants.Service.Data
 {
     public class ApiConstants
     {
@@ -13,6 +9,6 @@ namespace BethanyPieShop.Core.Constants.Service.Data
         public const string PlaceOrderEndpoint = "api/order";
         public const string ShoppingCartEndpoint = "api/shoppingcart";
         public const string AddShoppingCartItemEndpoint = "api/shoppingcart/";
-
+        public const string AuthenticateEndpoint = "api/authentication/authenticate";
     }
 }
