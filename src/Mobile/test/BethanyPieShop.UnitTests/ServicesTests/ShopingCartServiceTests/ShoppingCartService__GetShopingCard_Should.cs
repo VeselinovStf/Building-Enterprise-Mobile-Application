@@ -24,9 +24,9 @@ namespace BethanyPieShop.UnitTests.ServicesTests.ShopingCartServiceTests
                 .Setup(e => e.GetAsync<ShoppingCart>(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns(Task.FromResult<ShoppingCart>(mockShoppingCart));
 
-            var orderDataService = new ShoppingCartDataService(requestProviderMock.Object);
+            var shoppingCartDataService = new ShoppingCartDataService(requestProviderMock.Object);
 
-            var addedOrderResult = await orderDataService.GetShoppingCart(userId);
+            var addedOrderResult = await shoppingCartDataService.GetShoppingCart(userId);
 
             Assert.NotNull(addedOrderResult);
             Assert.AreEqual(addedOrderResult.ShoppingCartId, mockShoppingCart.ShoppingCartId);
@@ -48,10 +48,10 @@ namespace BethanyPieShop.UnitTests.ServicesTests.ShopingCartServiceTests
                 .Setup(e => e.GetAsync<ShoppingCart>(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns(Task.FromResult<ShoppingCart>(mockShoppingCart));
 
-            var orderDataService = new ShoppingCartDataService(requestProviderMock.Object);
+            var shoppingCartDataService = new ShoppingCartDataService(requestProviderMock.Object);
 
             Assert.ThrowsAsync<ShoppingCartDataServiceException>(
-                async () => await orderDataService.GetShoppingCart(userId));
+                async () => await shoppingCartDataService.GetShoppingCart(userId));
         }
     }
 }
