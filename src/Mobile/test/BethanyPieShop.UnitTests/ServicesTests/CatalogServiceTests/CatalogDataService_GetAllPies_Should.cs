@@ -8,10 +8,10 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace BethanyPieShop.UnitTests.ServicesTests
+namespace BethanyPieShop.UnitTests.ServicesTests.CatalogServiceTests
 {
     [TestFixture]
-    public class CatalogDataService_Should
+    public class CatalogDataService_GetAllPies_Should
     {
         [Test]
         public async Task GetAllPiesAsync()
@@ -19,7 +19,7 @@ namespace BethanyPieShop.UnitTests.ServicesTests
             var requestProviderMock = new Mock<IRequestProvider>();
                 requestProviderMock
                     .Setup(e => e.GetAsync<IList<Pie>>(It.IsAny<string>(), It.IsAny<string>()))
-                    .Returns(Task.FromResult<IList<Pie>>(PieList.MockPieCatalog()));
+                    .Returns(Task.FromResult<IList<Pie>>(PieListMock.MockPieCatalog()));
 
             var casheMock = new Mock<IBaseCacheStrategy>();
 
@@ -29,7 +29,7 @@ namespace BethanyPieShop.UnitTests.ServicesTests
             var serviceCallResult = await dataService.GetAllPiesAsync();
 
             Assert.IsNotNull(serviceCallResult);
-            Assert.AreEqual(PieList.MockPieCatalogCount(), serviceCallResult.Count);
+            Assert.AreEqual(PieListMock.MockPieCatalogCount(), serviceCallResult.Count);
         }
 
         [Test]

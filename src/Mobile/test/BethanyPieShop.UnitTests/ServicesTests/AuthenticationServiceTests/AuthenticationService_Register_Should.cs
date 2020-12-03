@@ -8,10 +8,10 @@ using Moq;
 using NUnit.Framework;
 using System.Threading.Tasks;
 
-namespace BethanyPieShop.UnitTests.ServicesTests
+namespace BethanyPieShop.UnitTests.ServicesTests.AuthenticationServiceTests
 {
     [TestFixture]
-    public class AuthenticationService_Should
+    public class AuthenticationService_Register_Should
     {
         [Test]
         public async Task Register_When_Correct_Parrametars_Are_Passed()
@@ -237,5 +237,7 @@ namespace BethanyPieShop.UnitTests.ServicesTests
             Assert.ThrowsAsync<AuthenticationException>(
                 async () => await authenticationService.RegisterAsync(firstName, lastName, email, userName, password));
         }
+
+
     }
 }

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace BethanyPieShop.UnitTests.ServicesTests
 {
-    public static class PieList
+    public static class PieListMock
     {
         private static Dictionary<string, Category> _categories;
         public static Dictionary<string, Category> Categories
