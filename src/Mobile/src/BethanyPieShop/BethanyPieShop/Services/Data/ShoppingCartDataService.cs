@@ -17,9 +17,35 @@ namespace BethanyPieShop.Core.Services.Data
             _request = request;
         }
 
-        public Task<ShoppingCartItem> AddShoppingCartItem(ShoppingCartItem shoppingCartItem, string userId)
+        public async Task<UserShoppingCartItem> AddShoppingCartItem(ShoppingCartItem shoppingCartItem, string userId)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                ValidationGuard
+                   .StringIsValidRange(userId, 1, $"Invalid {nameof(userId)}");
+
+                ValidationGuard
+                    .ObjectIsNull(shoppingCartItem, $"Invalid {nameof(shoppingCartItem)}");
+
+                UriBuilder builder = new UriBuilder(ApiConstants.BaseApiUrl)
+                {
+                    Path = ApiConstants.AddShoppingCartItemEndpoint
+                };
+
+                var userShoppingCartItem = new UserShoppingCartItem
+                {
+                    ShoppingCartItem = shoppingCartItem,
+                    UserId = userId
+                };
+
+                var shoppingCartApiCall = await _request.PostAsync<UserShoppingCartItem>(builder.ToString(), userShoppingCartItem);
+
+                return shoppingCartApiCall;
+            }
+            catch (Exception ex)
+            {
+                throw new ShoppingCartDataServiceException(ex.Message);
+            }
         }
 
         public async Task<ShoppingCart> GetShoppingCart(string userId)

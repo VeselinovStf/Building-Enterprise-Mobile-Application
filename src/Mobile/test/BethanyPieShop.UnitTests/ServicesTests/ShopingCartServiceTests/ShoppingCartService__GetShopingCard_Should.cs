@@ -50,8 +50,6 @@ namespace BethanyPieShop.UnitTests.ServicesTests.ShopingCartServiceTests
 
             var orderDataService = new ShoppingCartDataService(requestProviderMock.Object);
 
-            var addedOrderResult = 
-
             Assert.ThrowsAsync<ShoppingCartDataServiceException>(
                 async () => await orderDataService.GetShoppingCart(userId));
         }

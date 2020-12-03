@@ -12,6 +12,7 @@ namespace BethanyPieShop.Core.Constants.Service.Data
         public const string AddContactInfoEndpoint = "api/contact";
         public const string PlaceOrderEndpoint = "api/order";
         public const string ShoppingCartEndpoint = "api/shoppingcart";
+        public const string AddShoppingCartItemEndpoint = "api/shoppingcart/";
 
     }
 }
