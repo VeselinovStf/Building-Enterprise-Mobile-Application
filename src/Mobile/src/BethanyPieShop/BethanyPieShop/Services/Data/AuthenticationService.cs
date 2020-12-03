@@ -20,7 +20,34 @@ namespace BethanyPieShop.Core.Services.Data
 
         public async Task<AuthenticationResponse> Authenticate(string userName, string password)
         {
-            throw new System.NotImplementedException();
+            try
+            {              
+                ValidationGuard
+                    .StringIsValidRange(userName, 4, $"Invalid {nameof(userName)}");
+
+                ValidationGuard
+                    .StringIsValidRange(password, 4, $"Invalid {nameof(password)}");
+
+                var user = new AuthenticationRequest()
+                {                   
+                    UserName = userName,
+                    Password = password
+                };
+
+                UriBuilder builder = new UriBuilder(ApiConstants.BaseApiUrl)
+                {
+                    Path = ApiConstants.RegisterEndpoint
+                };
+
+                var requestResult = await this._request
+                    .PostAsync<AuthenticationRequest, AuthenticationResponse>(builder.ToString(), user);
+
+                return requestResult;
+            }
+            catch (Exception ex)
+            {
+                throw new AuthenticationException(ex.Message);
+            }
         }
 
         public bool IsAuthenticated()
