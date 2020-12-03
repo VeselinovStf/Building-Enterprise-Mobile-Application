@@ -38,8 +38,9 @@ namespace BethanyPieShop.UnitTests.ServicesTests.AuthenticationServiceTests
                 requestProviderMock
                     .Setup(e => e.PostAsync<AuthenticationRequest, AuthenticationResponse>(It.IsAny<string>(), It.IsAny<AuthenticationRequest>(), It.IsAny<string>()))
                     .Returns(Task.FromResult<AuthenticationResponse>(requestProviderResult));
+            var settingsMock = new Mock<ISettingsService>();
 
-            var authenticationService = new AuthenticationService(requestProviderMock.Object);
+            var authenticationService = new AuthenticationService(requestProviderMock.Object, settingsMock.Object);
 
             var registrationResult = await authenticationService.RegisterAsync(firstName, lastName, email, userName, password);
 
@@ -82,8 +83,9 @@ namespace BethanyPieShop.UnitTests.ServicesTests.AuthenticationServiceTests
             requestProviderMock
                 .Setup(e => e.PostAsync<AuthenticationRequest, AuthenticationResponse>(It.IsAny<string>(), It.IsAny<AuthenticationRequest>(), It.IsAny<string>()))
                 .Returns(Task.FromResult<AuthenticationResponse>(requestProviderResult));
+            var settingsMock = new Mock<ISettingsService>();
 
-            var authenticationService = new AuthenticationService(requestProviderMock.Object);
+            var authenticationService = new AuthenticationService(requestProviderMock.Object, settingsMock.Object);
 
           
             Assert.ThrowsAsync<AuthenticationException>(
@@ -119,8 +121,9 @@ namespace BethanyPieShop.UnitTests.ServicesTests.AuthenticationServiceTests
             requestProviderMock
                 .Setup(e => e.PostAsync<AuthenticationRequest, AuthenticationResponse>(It.IsAny<string>(), It.IsAny<AuthenticationRequest>(), It.IsAny<string>()))
                 .Returns(Task.FromResult<AuthenticationResponse>(requestProviderResult));
+            var settingsMock = new Mock<ISettingsService>();
 
-            var authenticationService = new AuthenticationService(requestProviderMock.Object);
+            var authenticationService = new AuthenticationService(requestProviderMock.Object, settingsMock.Object);
 
            
             Assert.ThrowsAsync<AuthenticationException>(
@@ -156,8 +159,9 @@ namespace BethanyPieShop.UnitTests.ServicesTests.AuthenticationServiceTests
             requestProviderMock
                 .Setup(e => e.PostAsync<AuthenticationRequest, AuthenticationResponse>(It.IsAny<string>(), It.IsAny<AuthenticationRequest>(), It.IsAny<string>()))
                 .Returns(Task.FromResult<AuthenticationResponse>(requestProviderResult));
+            var settingsMock = new Mock<ISettingsService>();
 
-            var authenticationService = new AuthenticationService(requestProviderMock.Object);
+            var authenticationService = new AuthenticationService(requestProviderMock.Object, settingsMock.Object);
 
             
             Assert.ThrowsAsync<AuthenticationException>(
@@ -193,8 +197,9 @@ namespace BethanyPieShop.UnitTests.ServicesTests.AuthenticationServiceTests
             requestProviderMock
                 .Setup(e => e.PostAsync<AuthenticationRequest, AuthenticationResponse>(It.IsAny<string>(), It.IsAny<AuthenticationRequest>(), It.IsAny<string>()))
                 .Returns(Task.FromResult<AuthenticationResponse>(requestProviderResult));
+            var settingsMock = new Mock<ISettingsService>();
 
-            var authenticationService = new AuthenticationService(requestProviderMock.Object);
+            var authenticationService = new AuthenticationService(requestProviderMock.Object, settingsMock.Object);
 
           
             Assert.ThrowsAsync<AuthenticationException>(
@@ -230,8 +235,9 @@ namespace BethanyPieShop.UnitTests.ServicesTests.AuthenticationServiceTests
             requestProviderMock
                 .Setup(e => e.PostAsync<AuthenticationRequest, AuthenticationResponse>(It.IsAny<string>(), It.IsAny<AuthenticationRequest>(), It.IsAny<string>()))
                 .Returns(Task.FromResult<AuthenticationResponse>(requestProviderResult));
+            var settingsMock = new Mock<ISettingsService>();
 
-            var authenticationService = new AuthenticationService(requestProviderMock.Object);
+            var authenticationService = new AuthenticationService(requestProviderMock.Object, settingsMock.Object);
 
            
             Assert.ThrowsAsync<AuthenticationException>(

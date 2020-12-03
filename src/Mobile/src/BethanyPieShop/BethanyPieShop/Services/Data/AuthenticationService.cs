@@ -12,10 +12,14 @@ namespace BethanyPieShop.Core.Services.Data
     public class AuthenticationService : IAuthenticationService
     {
         private readonly IRequestProvider _request;
+        private readonly ISettingsService _settingsService;
 
-        public AuthenticationService(IRequestProvider request)
+        public AuthenticationService(
+            IRequestProvider request,
+            ISettingsService settingsService)
         {
             _request = request;
+            _settingsService = settingsService;
         }
 
         public async Task<AuthenticationResponse> Authenticate(string userName, string password)
@@ -52,7 +56,7 @@ namespace BethanyPieShop.Core.Services.Data
 
         public bool IsAuthenticated()
         {
-            throw new System.NotImplementedException();
+            return !string.IsNullOrEmpty(_settingsService.UserIdSetting);
         }
 
         public async Task<AuthenticationResponse> RegisterAsync(string firstName, string lastName, string email, string userName, string password)
