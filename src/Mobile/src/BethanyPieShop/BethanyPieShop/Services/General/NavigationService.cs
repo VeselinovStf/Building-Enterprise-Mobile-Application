@@ -28,5 +28,10 @@ namespace BethanyPieShop.Core.Services.General
         {
             throw new NotImplementedException();
         }
+
+        public Task PopToRootAsync()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

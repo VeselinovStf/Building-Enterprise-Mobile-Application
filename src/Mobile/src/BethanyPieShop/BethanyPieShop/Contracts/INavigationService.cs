@@ -11,5 +11,6 @@ namespace BethanyPieShop.Core.Contracts
         void ClearBackStack();
         Task NavigateToAsync(Type type);
         void NavigateToAsync<T>(object parameter) where T : ViewModelBase;
+        Task PopToRootAsync();
     }
 }
