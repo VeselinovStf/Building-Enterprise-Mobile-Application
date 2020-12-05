@@ -32,7 +32,7 @@ namespace BethanyPieShop.Core.ViewModels
             IConnectionService connectionService,
             IDialogService dialogService
             )
-        {            
+        {
             _navigationService = navigationService;
             _shoppingCartDataService = shoppingCartDataService;
             _settingsService = settingsService;
@@ -196,7 +196,7 @@ namespace BethanyPieShop.Core.ViewModels
                        );
             }
 
-            IsBusy = false;           
+            IsBusy = false;
         }
     }
 }

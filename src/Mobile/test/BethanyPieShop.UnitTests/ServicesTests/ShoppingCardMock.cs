@@ -6,7 +6,7 @@ namespace BethanyPieShop.UnitTests.ServicesTests
     public static class ShoppingCardMock
     {
         public static ShoppingCart GetMockShoppingCart(string userId)
-        {            
+        {
             var shoppingCartId = 1;
 
             var shoppingCarItems = new List<ShoppingCartItem>()

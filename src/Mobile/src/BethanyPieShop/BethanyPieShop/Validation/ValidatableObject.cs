@@ -1,9 +1,7 @@
 ﻿using BethanyPieShop.Core.Contracts;
 using BethanyPieShop.Core.ViewModels.Base;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace BethanyPieShop.Core.Validation
 {

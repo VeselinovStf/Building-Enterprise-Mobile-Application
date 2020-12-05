@@ -39,7 +39,7 @@ namespace BethanyPieShop.UnitTests.ServicesTests.ShopingCartServiceTests
         [TestCase(null)]
         public void Throws_When_Invalid_UserId_Is_Passed(string userId)
         {
-            
+
             var mockShoppingCart = ShoppingCardMock.GetMockShoppingCart(userId);
 
             var requestProviderMock = new Mock<IRequestProvider>();

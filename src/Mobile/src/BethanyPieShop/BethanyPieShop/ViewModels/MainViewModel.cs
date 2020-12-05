@@ -20,7 +20,7 @@ namespace BethanyPieShop.Core.ViewModels
         public MenuViewModel MenuViewModel
         {
             get { return _menuViewModel; }
-            set 
+            set
             {
                 _menuViewModel = value;
                 OnPropertyChanged();

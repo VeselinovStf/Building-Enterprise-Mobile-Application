@@ -50,7 +50,7 @@ namespace BethanyPieShop.Core.ViewModels
             _navigationService.NavigateToAsync<PieDetailViewModel>(selectedPie);
         }
 
-      
+
         public override async Task InitializeAsync(object data)
         {
             IsBusy = true;

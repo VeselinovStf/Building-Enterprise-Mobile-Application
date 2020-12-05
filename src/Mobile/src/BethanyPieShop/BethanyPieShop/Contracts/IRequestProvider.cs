@@ -6,6 +6,6 @@ namespace BethanyPieShop.Core.Contracts
     {
         Task<T> GetAsync<T>(string uri, string authToken = "");
         Task<TResponse> PostAsync<TRequest, TResponse>(string uri, TRequest data, string authToken = "");
-        Task<T> PostAsync<T>(string uri,T data, string authToken = "");
+        Task<T> PostAsync<T>(string uri, T data, string authToken = "");
     }
 }

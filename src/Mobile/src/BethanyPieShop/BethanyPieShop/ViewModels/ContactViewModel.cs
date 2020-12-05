@@ -25,7 +25,7 @@ namespace BethanyPieShop.Core.ViewModels
             IDialogService dialogService,
             IContactDataService contactDataService,
             IPhoneContactService phoneContactService)
-        {         
+        {
             _connectionService = connectionService;
             _dialogService = dialogService;
             _contactDataService = contactDataService;
@@ -36,16 +36,16 @@ namespace BethanyPieShop.Core.ViewModels
 
             AddValidations();
         }
-      
+
         public ICommand SubmitMessageCommand => new Command(OnSubmitMessage);
         public ICommand PhoneCallCommand => new Command(OnPhoneCall);
-       
+
         public ValidatableObject<string> Message
         {
             get { return _message; }
             set { _message = value; }
         }
-       
+
         public ValidatableObject<string> Email
         {
             get { return _email; }
@@ -102,7 +102,7 @@ namespace BethanyPieShop.Core.ViewModels
                     catch (Exception ex)
                     {
                         //TODO: Mange exeptions logging
-                       
+
                         await _dialogService.ShowDialog(
                             "Contact service is unavailible, please try later.",
                             "Try Later",

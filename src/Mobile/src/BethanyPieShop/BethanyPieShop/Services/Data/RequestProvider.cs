@@ -27,8 +27,8 @@ namespace BethanyPieShop.Core.Services.Data
                 string jsonResult = string.Empty;
 
                 var responseMessage = await _policyStrategy
-                    .WaitToRetryAsyncStrategy<HttpResponseMessage,HttpClient>(
-                            async () => await httpClient.GetAsync(uri),5);
+                    .WaitToRetryAsyncStrategy<HttpResponseMessage, HttpClient>(
+                            async () => await httpClient.GetAsync(uri), 5);
 
                 if (responseMessage.IsSuccessStatusCode)
                 {
@@ -93,7 +93,7 @@ namespace BethanyPieShop.Core.Services.Data
             }
         }
 
-        public async Task<T> PostAsync<T>(string uri,T data, string authToken = "")
+        public async Task<T> PostAsync<T>(string uri, T data, string authToken = "")
         {
             try
             {
@@ -132,18 +132,19 @@ namespace BethanyPieShop.Core.Services.Data
             }
         }
 
-        private HttpClient CreateHttpClient(string token = "") 
-        { 
+        private HttpClient CreateHttpClient(string token = "")
+        {
             var httpClient = new HttpClient();
-            
+
             httpClient.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json")); 
-            
+                new MediaTypeWithQualityHeaderValue("application/json"));
+
             if (!string.IsNullOrEmpty(token))
             {
-                httpClient.DefaultRequestHeaders.Authorization = 
-                    new AuthenticationHeaderValue("Bearer", token); 
-            } return httpClient;        
+                httpClient.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue("Bearer", token);
+            }
+            return httpClient;
         }
 
     }

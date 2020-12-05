@@ -27,12 +27,12 @@ namespace BethanyPieShop.UnitTests.ServicesTests.ContactServiceTests
 
             var requestProviderMock = new Mock<IRequestProvider>();
             requestProviderMock
-                .Setup(e => e.PostAsync<ContactInfo>(It.IsAny<string>(), It.IsAny<ContactInfo>(),It.IsAny<string>()))
+                .Setup(e => e.PostAsync<ContactInfo>(It.IsAny<string>(), It.IsAny<ContactInfo>(), It.IsAny<string>()))
                 .Returns(Task.FromResult<ContactInfo>(contactInfo));
 
             var contactService = new ContactDataService(requestProviderMock.Object);
 
-            var contactServiceResult = await contactService.AddContactInfoAsync(message,email);
+            var contactServiceResult = await contactService.AddContactInfoAsync(message, email);
 
             Assert.IsNotNull(contactServiceResult);
             Assert.AreEqual(contactId, contactServiceResult.ContactInfoId);
@@ -48,7 +48,7 @@ namespace BethanyPieShop.UnitTests.ServicesTests.ContactServiceTests
         {
             const int contactId = 1;
             const string message = "message";
-            
+
             var contactInfo = new ContactInfo()
             {
                 ContactInfoId = contactId,

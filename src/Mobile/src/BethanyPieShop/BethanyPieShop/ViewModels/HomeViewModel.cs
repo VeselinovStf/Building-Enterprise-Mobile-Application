@@ -77,7 +77,7 @@ namespace BethanyPieShop.Core.ViewModels
                         "Try Later",
                         "Ok"
                         );
-                }                
+                }
             }
             else
             {

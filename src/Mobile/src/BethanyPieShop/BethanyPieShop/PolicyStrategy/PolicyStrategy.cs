@@ -34,7 +34,7 @@ namespace BethanyPieShop.Core.PolicyStrategy
             catch (Exception ex)
             {
                 throw new PolicyStrategyException(ex.Message);
-            }           
+            }
         }
     }
 }

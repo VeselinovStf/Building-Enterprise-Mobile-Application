@@ -108,7 +108,7 @@ namespace BethanyPieShop.UnitTests.ServicesTests.OrderServiceTests
 
             Assert.ThrowsAsync<OrderDataServiceException>(
                 async () => await orderDataService.AddOrderAsync(order));
-        }     
+        }
 
         [Test]
         public void Throws_When_Invalid_Order_Address_Is_Passed()
@@ -128,7 +128,7 @@ namespace BethanyPieShop.UnitTests.ServicesTests.OrderServiceTests
             };
 
             Address orderAddress = null;
-           
+
             var order = new Order()
             {
                 Address = orderAddress,
@@ -156,7 +156,7 @@ namespace BethanyPieShop.UnitTests.ServicesTests.OrderServiceTests
             var orderTotal = 123;
             var userId = "U1";
             var orderId = "O1";
-           
+
 
             var orderAddressCity = "City";
             var orderAddressNumber = "+123456778";

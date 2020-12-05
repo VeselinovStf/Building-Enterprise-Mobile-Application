@@ -61,13 +61,13 @@ namespace BethanyPieShop.Core.ViewModels
         public ValidatableObject<string> FirstName
         {
             get { return _firstName; }
-            set 
-            { 
+            set
+            {
                 _firstName = value;
                 OnPropertyChanged();
             }
         }
-       
+
         public ValidatableObject<string> LastName
         {
             get { return _lastName; }
@@ -77,7 +77,7 @@ namespace BethanyPieShop.Core.ViewModels
                 OnPropertyChanged();
             }
         }
-        
+
         public ValidatableObject<string> UserName
         {
             get { return _userName; }

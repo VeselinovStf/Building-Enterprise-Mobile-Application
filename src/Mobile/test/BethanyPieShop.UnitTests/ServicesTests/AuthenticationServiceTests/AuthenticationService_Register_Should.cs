@@ -24,20 +24,21 @@ namespace BethanyPieShop.UnitTests.ServicesTests.AuthenticationServiceTests
 
             var requestProviderResult = new AuthenticationResponse()
             {
-                 User = new User()
-                 {
-                     FirstName = firstName,
-                     LastName = lastName,
-                     Email = email,
-                     UserName = userName
-                 }
-                ,IsAuthenticated = true
+                User = new User()
+                {
+                    FirstName = firstName,
+                    LastName = lastName,
+                    Email = email,
+                    UserName = userName
+                }
+                ,
+                IsAuthenticated = true
             };
 
             var requestProviderMock = new Mock<IRequestProvider>();
-                requestProviderMock
-                    .Setup(e => e.PostAsync<AuthenticationRequest, AuthenticationResponse>(It.IsAny<string>(), It.IsAny<AuthenticationRequest>(), It.IsAny<string>()))
-                    .Returns(Task.FromResult<AuthenticationResponse>(requestProviderResult));
+            requestProviderMock
+                .Setup(e => e.PostAsync<AuthenticationRequest, AuthenticationResponse>(It.IsAny<string>(), It.IsAny<AuthenticationRequest>(), It.IsAny<string>()))
+                .Returns(Task.FromResult<AuthenticationResponse>(requestProviderResult));
             var settingsMock = new Mock<ISettingsService>();
 
             var authenticationService = new AuthenticationService(requestProviderMock.Object, settingsMock.Object);
@@ -87,7 +88,7 @@ namespace BethanyPieShop.UnitTests.ServicesTests.AuthenticationServiceTests
 
             var authenticationService = new AuthenticationService(requestProviderMock.Object, settingsMock.Object);
 
-          
+
             Assert.ThrowsAsync<AuthenticationDataException>(
                 async () => await authenticationService.RegisterAsync(firstName, lastName, email, userName, password));
         }
@@ -125,7 +126,7 @@ namespace BethanyPieShop.UnitTests.ServicesTests.AuthenticationServiceTests
 
             var authenticationService = new AuthenticationService(requestProviderMock.Object, settingsMock.Object);
 
-           
+
             Assert.ThrowsAsync<AuthenticationDataException>(
                 async () => await authenticationService.RegisterAsync(firstName, lastName, email, userName, password));
         }
@@ -163,7 +164,7 @@ namespace BethanyPieShop.UnitTests.ServicesTests.AuthenticationServiceTests
 
             var authenticationService = new AuthenticationService(requestProviderMock.Object, settingsMock.Object);
 
-            
+
             Assert.ThrowsAsync<AuthenticationDataException>(
                 async () => await authenticationService.RegisterAsync(firstName, lastName, email, userName, password));
         }
@@ -201,7 +202,7 @@ namespace BethanyPieShop.UnitTests.ServicesTests.AuthenticationServiceTests
 
             var authenticationService = new AuthenticationService(requestProviderMock.Object, settingsMock.Object);
 
-          
+
             Assert.ThrowsAsync<AuthenticationDataException>(
                 async () => await authenticationService.RegisterAsync(firstName, lastName, email, userName, password));
         }
@@ -239,7 +240,7 @@ namespace BethanyPieShop.UnitTests.ServicesTests.AuthenticationServiceTests
 
             var authenticationService = new AuthenticationService(requestProviderMock.Object, settingsMock.Object);
 
-           
+
             Assert.ThrowsAsync<AuthenticationDataException>(
                 async () => await authenticationService.RegisterAsync(firstName, lastName, email, userName, password));
         }

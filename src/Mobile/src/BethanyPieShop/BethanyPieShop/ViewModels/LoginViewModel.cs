@@ -40,21 +40,21 @@ namespace BethanyPieShop.Core.ViewModels
 
         public ICommand LoginCommand => new Command(OnLogin);
         public ICommand RegisterCommand => new Command(OnRegister);
-       
+
         public ValidatableObject<string> UserName
         {
             get { return _userName; }
-            set 
-            { 
+            set
+            {
                 _userName = value;
                 OnPropertyChanged();
             }
         }
-       
+
         public ValidatableObject<string> Password
         {
             get { return _password; }
-            set 
+            set
             {
                 _password = value;
                 OnPropertyChanged();
@@ -74,7 +74,7 @@ namespace BethanyPieShop.Core.ViewModels
             }
         }
 
-        private  async void OnRegister()
+        private async void OnRegister()
         {
             await _navigationService.NavigateToAsync<RegistrationViewModel>();
         }
@@ -84,7 +84,7 @@ namespace BethanyPieShop.Core.ViewModels
             this.IsBusy = true;
             this.IsValid = true;
             bool isValid = Validate();
-            
+
             if (isValid)
             {
                 if (_connectionService.IsConnected)
@@ -140,7 +140,7 @@ namespace BethanyPieShop.Core.ViewModels
             this.IsBusy = false;
 
         }
-   
+
         private bool Validate()
         {
             bool isValidUser = ValidateUserName();

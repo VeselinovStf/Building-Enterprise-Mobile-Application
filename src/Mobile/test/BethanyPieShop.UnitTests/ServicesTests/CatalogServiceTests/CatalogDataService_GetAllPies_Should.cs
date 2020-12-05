@@ -17,13 +17,13 @@ namespace BethanyPieShop.UnitTests.ServicesTests.CatalogServiceTests
         public async Task GetAllPiesAsync()
         {
             var requestProviderMock = new Mock<IRequestProvider>();
-                requestProviderMock
-                    .Setup(e => e.GetAsync<IList<Pie>>(It.IsAny<string>(), It.IsAny<string>()))
-                    .Returns(Task.FromResult<IList<Pie>>(PieListMock.MockPieCatalog()));
+            requestProviderMock
+                .Setup(e => e.GetAsync<IList<Pie>>(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns(Task.FromResult<IList<Pie>>(PieListMock.MockPieCatalog()));
 
             var casheMock = new Mock<IBaseCacheStrategy>();
 
-            ICatalogDataService dataService 
+            ICatalogDataService dataService
                 = new CatalogDataService(requestProviderMock.Object, casheMock.Object);
 
             var serviceCallResult = await dataService.GetAllPiesAsync();
@@ -44,8 +44,8 @@ namespace BethanyPieShop.UnitTests.ServicesTests.CatalogServiceTests
 
             ICatalogDataService dataService
                 = new CatalogDataService(requestProviderMock.Object, casheMock.Object);
-         
-              Assert.ThrowsAsync<CatalogDataServiceException>(async() => await dataService.GetAllPiesAsync());          
+
+            Assert.ThrowsAsync<CatalogDataServiceException>(async () => await dataService.GetAllPiesAsync());
         }
     }
 }

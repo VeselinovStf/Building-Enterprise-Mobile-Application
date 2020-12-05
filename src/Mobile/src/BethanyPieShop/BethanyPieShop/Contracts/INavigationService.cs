@@ -1,5 +1,4 @@
-﻿using BethanyPieShop.Core.Models;
-using BethanyPieShop.Core.ViewModels.Base;
+﻿using BethanyPieShop.Core.ViewModels.Base;
 using System;
 using System.Threading.Tasks;
 

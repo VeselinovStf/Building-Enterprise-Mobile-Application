@@ -2,7 +2,6 @@
 using BethanyPieShop.Core.Contracts;
 using BethanyPieShop.Core.Models;
 using BethanyPieShop.Core.ViewModels.Base;
-using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -29,12 +28,12 @@ namespace BethanyPieShop.Core.ViewModels
 
         public ICommand AddToCartCommand => new Command(OnAddToCart);
         public ICommand ReadDescriptionCommand => new Command(OnReadDescription);
-    
+
         public Pie SelectedPie
         {
             get { return _selectedPie; }
-            set 
-            { 
+            set
+            {
                 _selectedPie = value;
                 OnPropertyChanged();
             }
@@ -59,7 +58,7 @@ namespace BethanyPieShop.Core.ViewModels
             if (SelectedPie != null)
             {
                 DependencyService.Get<ITextToSpeech>().ReadText(SelectedPie.LongDescription);
-            }           
+            }
         }
 
         public override async Task InitializeAsync(object data)

@@ -18,7 +18,7 @@ namespace BethanyPieShop.Core.ViewModels
         private readonly IOrderDataService _orderDataService;
 
         private Order _order;
-        
+
         public CheckoutViewModel(
             ISettingsService settingsService,
             IDialogService dialogService,
@@ -90,7 +90,7 @@ namespace BethanyPieShop.Core.ViewModels
                             "Ok"
                             );
                 }
-            }           
+            }
 
             IsBusy = false;
         }

@@ -34,7 +34,7 @@ namespace BethanyPieShop.UnitTests.ServicesTests.AuthenticationServiceTests
                 ,
                 IsAuthenticated = true
             };
-         
+
             var requestProviderMock = new Mock<IRequestProvider>();
             requestProviderMock
                 .Setup(e => e.PostAsync<AuthenticationRequest, AuthenticationResponse>(It.IsAny<string>(), It.IsAny<AuthenticationRequest>(), It.IsAny<string>()))
@@ -128,7 +128,7 @@ namespace BethanyPieShop.UnitTests.ServicesTests.AuthenticationServiceTests
 
 
             Assert.ThrowsAsync<AuthenticationDataException>(
-                async () => await authenticationService.Authenticate( userName, password));
+                async () => await authenticationService.Authenticate(userName, password));
         }
     }
 }

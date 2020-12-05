@@ -1,14 +1,7 @@
 ﻿using BethanyPieShop.Core.Contracts;
-using BethanyPieShop.Core.Models;
-using BethanyPieShop.Core.Models.Requests;
-using BethanyPieShop.Core.Models.Responses;
 using BethanyPieShop.Core.Services.Data;
 using Moq;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BethanyPieShop.UnitTests.ServicesTests.AuthenticationServiceTests
 {
@@ -25,9 +18,9 @@ namespace BethanyPieShop.UnitTests.ServicesTests.AuthenticationServiceTests
 
             var authenticationService = new AuthenticationService(requestProviderMock.Object, settingsMock.Object);
 
-            var registrationResult =  authenticationService.IsAuthenticated();
+            var registrationResult = authenticationService.IsAuthenticated();
 
-            Assert.IsTrue(registrationResult);          
+            Assert.IsTrue(registrationResult);
         }
 
         [Test]

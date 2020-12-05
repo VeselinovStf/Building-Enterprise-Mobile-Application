@@ -43,8 +43,8 @@ namespace BethanyPieShop.Core.Services.Data
                 ValidationGuard
                     .StringIsValidRange(order.Address.Number, 4, $"Invalid {order.Address.Number}");
 
-                 ValidationGuard
-                    .StringIsValidRange(order.Address.Street, 4, $"Invalid {order.Address.Street}");
+                ValidationGuard
+                   .StringIsValidRange(order.Address.Street, 4, $"Invalid {order.Address.Street}");
 
                 ValidationGuard
                     .StringIsValidRange(order.Address.ZipCode, 4, $"Invalid {order.Address.ZipCode}");

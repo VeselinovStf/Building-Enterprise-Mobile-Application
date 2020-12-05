@@ -16,7 +16,7 @@ namespace BethanyPieShop.Core.Services.Data
 
         public CatalogDataService(
             IRequestProvider request,
-            IBaseCacheStrategy cache )
+            IBaseCacheStrategy cache)
         {
             _request = request;
             _cache = cache;
@@ -77,7 +77,7 @@ namespace BethanyPieShop.Core.Services.Data
 
                 throw new CatalogDataServiceException(ex.Message);
             }
-           
+
         }
     }
 }

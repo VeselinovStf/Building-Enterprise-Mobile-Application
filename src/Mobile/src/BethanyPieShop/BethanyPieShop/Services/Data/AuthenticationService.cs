@@ -25,7 +25,7 @@ namespace BethanyPieShop.Core.Services.Data
         public async Task<AuthenticationResponse> Authenticate(string userName, string password)
         {
             try
-            {              
+            {
                 ValidationGuard
                     .StringIsValidRange(userName, 4, $"Invalid {nameof(userName)}");
 
@@ -33,7 +33,7 @@ namespace BethanyPieShop.Core.Services.Data
                     .StringIsValidRange(password, 4, $"Invalid {nameof(password)}");
 
                 var user = new AuthenticationRequest()
-                {                   
+                {
                     UserName = userName,
                     Password = password
                 };
@@ -64,7 +64,7 @@ namespace BethanyPieShop.Core.Services.Data
             try
             {
                 ValidationGuard
-                    .StringIsValidRange(firstName,4, $"Invalid {nameof(firstName)}");
+                    .StringIsValidRange(firstName, 4, $"Invalid {nameof(firstName)}");
 
                 ValidationGuard
                     .StringIsValidRange(lastName, 4, $"Invalid {nameof(lastName)}");

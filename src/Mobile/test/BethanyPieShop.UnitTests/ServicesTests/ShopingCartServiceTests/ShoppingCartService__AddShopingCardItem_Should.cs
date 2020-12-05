@@ -39,7 +39,7 @@ namespace BethanyPieShop.UnitTests.ServicesTests.ShopingCartServiceTests
 
             Assert.NotNull(shoppingCartOrderResult);
             Assert.AreEqual(shoppingCartOrderResult.UserId, userId);
-            Assert.NotNull(shoppingCartOrderResult.ShoppingCartItem);                  
+            Assert.NotNull(shoppingCartOrderResult.ShoppingCartItem);
         }
 
         [TestCase("")]
