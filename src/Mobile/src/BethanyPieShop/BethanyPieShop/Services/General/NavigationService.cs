@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace BethanyPieShop.Core.Services.General
 {
+    //TODO: Implement Navigation
     public class NavigationService : INavigationService
     {
         public void ClearBackStack()
@@ -14,11 +15,16 @@ namespace BethanyPieShop.Core.Services.General
 
         public Task NavigateToAsync<TViewModel>() where TViewModel : ViewModelBase
         {
-            //TODO: Implement Navigation
+            
             throw new System.NotImplementedException();
         }
 
         public Task NavigateToAsync(Type type)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void NavigateToAsync<T>(object parameter) where T : ViewModelBase
         {
             throw new NotImplementedException();
         }
