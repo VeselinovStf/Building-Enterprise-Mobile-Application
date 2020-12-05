@@ -5,7 +5,7 @@ using Xamarin.Forms.Xaml;
 namespace BethanyPieShop.Core.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ShoppingCartView : ContentView
+    public partial class ShoppingCartView : ContentPage
     {
         public ShoppingCartView()
         {

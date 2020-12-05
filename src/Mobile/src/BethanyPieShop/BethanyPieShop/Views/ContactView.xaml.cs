@@ -5,7 +5,7 @@ using Xamarin.Forms.Xaml;
 namespace BethanyPieShop.Core.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ContactView : ContentView
+    public partial class ContactView : ContentPage
     {
         public ContactView()
         {

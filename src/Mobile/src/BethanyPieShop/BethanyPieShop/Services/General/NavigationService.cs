@@ -173,7 +173,9 @@ namespace BethanyPieShop.Core.Services.General
                 }
             }
 
-            await (page.BindingContext as ViewModelBase).InitializeAsync(parameter);
+            var viewModelBindingContext = (page.BindingContext as ViewModelBase);
+
+            await viewModelBindingContext.InitializeAsync(parameter);
         }
 
         protected Type GetPageTypeForViewModel(Type viewModelType)

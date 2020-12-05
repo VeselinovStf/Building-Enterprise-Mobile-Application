@@ -1,6 +1,17 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BethanyPieShop.Core.Views.MainView">
- 
+             x:Class="BethanyPieShop.Core.Views.MainView"
+             xmlns:views="clr-namespace:BethanyPieShop.Core.Views;assembly=BethanyPieShop.Core"
+             xmlns:utility="clr-namespace:BethanyPieShop.Core.Utility;assembly=BethanyPieShop.Core"
+             utility:ViewModelLocator.AutoWireViewModel="True"
+             MasterBehavior="Popover"
+                  >
+
+    <MasterDetailPage.Master>
+        <views:MenuView BindingContext="{Binding MenuViewModel}" />
+    </MasterDetailPage.Master>
+    <MasterDetailPage.Detail>
+        <ContentPage></ContentPage>
+    </MasterDetailPage.Detail>
 </MasterDetailPage>
