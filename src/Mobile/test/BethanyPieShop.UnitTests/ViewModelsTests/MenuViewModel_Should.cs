@@ -19,9 +19,41 @@ namespace BethanyPieShop.UnitTests.ViewModelsTests
                 navigationMock.Object,
                 settingsMock.Object);
 
-            var loginCommand = menuWiewModel.MenuItemTappedCommand;
+            var menuItemTappedCommand = menuWiewModel.MenuItemTappedCommand;
 
-            Assert.NotNull(loginCommand);
+            Assert.NotNull(menuItemTappedCommand);
+        }
+
+        [Test]
+        public void Not_Return_Null_MenuItems()
+        {
+
+            var settingsMock = new Mock<ISettingsService>();
+            var navigationMock = new Mock<INavigationService>();
+
+            var menuWiewModel = new MenuViewModel(
+                navigationMock.Object,
+                settingsMock.Object);
+
+            var menuItems = menuWiewModel.MenuItems;
+
+            Assert.NotNull(menuItems);
+        }
+
+        [Test]
+        public void WelcomeText_Not_Null()
+        {
+
+            var settingsMock = new Mock<ISettingsService>();
+            var navigationMock = new Mock<INavigationService>();
+
+            var menuWiewModel = new MenuViewModel(
+                navigationMock.Object,
+                settingsMock.Object);
+
+            var welcomeText = menuWiewModel.WelcomeText;
+
+            Assert.NotNull(welcomeText);
         }
     }
 }
