@@ -58,7 +58,7 @@ namespace BethanyPieShop.Core.ViewModels
         {
             if (SelectedPie != null)
             {
-                DependencyService.Get<ITextToSpeach>().ReadText(SelectedPie.LongDescription);
+                DependencyService.Get<ITextToSpeech>().ReadText(SelectedPie.LongDescription);
             }           
         }
 

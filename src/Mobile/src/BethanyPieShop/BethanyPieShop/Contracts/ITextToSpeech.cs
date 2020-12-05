@@ -1,6 +1,6 @@
 ﻿namespace BethanyPieShop.Core.Contracts
 {
-    public interface ITextToSpeach
+    public interface ITextToSpeech
     {
         void ReadText(string textToRead);
     }
