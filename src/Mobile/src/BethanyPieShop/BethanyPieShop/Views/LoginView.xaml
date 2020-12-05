@@ -4,7 +4,7 @@
              x:Class="BethanyPieShop.Core.Views.LoginView">
   <ContentView.Content>
       <StackLayout>
-          <Label Text="Hello Xamarin.Forms!" />
+          <Label Text="Hello Xamarin.Forms! - Login Page" />
       </StackLayout>
   </ContentView.Content>
 </ContentView>
