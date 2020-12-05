@@ -47,7 +47,7 @@ namespace BethanyPieShop.Core.ViewModels
             {
                 _settingsService.UserIdSetting = null;
                 _settingsService.UserNameSetting = null;
-                _navigationService.ClearBackStack();
+               await _navigationService.ClearBackStack();
             }
 
             var type = menuItem?.ViewModelToLoad;
@@ -61,6 +61,27 @@ namespace BethanyPieShop.Core.ViewModels
                 MenuText = "Home",
                 ViewModelToLoad = typeof(MainViewModel),
                 MenuItemType = MenuItemType.Home
+            });
+
+            MenuItems.Add(new MainMenuItem
+            {
+                MenuText = "Pies",
+                ViewModelToLoad = typeof(PieCatalogViewModel),
+                MenuItemType = MenuItemType.Pies
+            });
+
+            MenuItems.Add(new MainMenuItem
+            {
+                MenuText = "Cart",
+                ViewModelToLoad = typeof(ShoppingCartViewModel),
+                MenuItemType = MenuItemType.ShoppingCart
+            });
+
+            MenuItems.Add(new MainMenuItem
+            {
+                MenuText = "Contact us",
+                ViewModelToLoad = typeof(ContactViewModel),
+                MenuItemType = MenuItemType.Contact
             });
 
             MenuItems.Add(new MainMenuItem

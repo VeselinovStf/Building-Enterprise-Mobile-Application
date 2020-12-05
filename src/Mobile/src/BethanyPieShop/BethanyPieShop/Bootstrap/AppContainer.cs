@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using BethanyPieShop.Core.CacheStrategy;
 using BethanyPieShop.Core.Contracts;
 using BethanyPieShop.Core.Services.Data;
 using BethanyPieShop.Core.Services.General;
@@ -45,6 +46,11 @@ namespace BethanyPieShop.Core.Bootstrap
 
             //General
             builder.RegisterType<RequestProvider>().As<IRequestProvider>();
+
+            builder.RegisterType<PolicyStrategy.PolicyStrategy>().As<IPolicyStrategy>();
+
+            builder.RegisterType<BaseCacheStrategy>().As<IBaseCacheStrategy>();
+
 
             _container = builder.Build();
         }

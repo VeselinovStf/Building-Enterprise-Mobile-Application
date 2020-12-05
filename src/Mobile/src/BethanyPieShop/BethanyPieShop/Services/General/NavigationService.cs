@@ -4,6 +4,7 @@ using BethanyPieShop.Core.ViewModels.Base;
 using BethanyPieShop.Core.Views;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -11,13 +12,20 @@ namespace BethanyPieShop.Core.Services.General
 {
     public class NavigationService : INavigationService
     {
+        private readonly IConnectionService _connectionService;
+        private readonly IDialogService _dialogService;
         private readonly IAuthenticationService _authenticationService;
         private readonly Dictionary<Type, Type> _mappings;
 
         protected Application CurrentApplication => Application.Current;
 
-        public NavigationService(IAuthenticationService authenticationService)
+        public NavigationService(
+            IConnectionService connectionService,
+            IDialogService dialogService,
+            IAuthenticationService authenticationService)
         {
+            _connectionService = connectionService;
+            _dialogService = dialogService;
             _authenticationService = authenticationService;
 
             _mappings = new Dictionary<Type, Type>();
@@ -27,14 +35,39 @@ namespace BethanyPieShop.Core.Services.General
 
         public async Task InitializeAsync()
         {
-            if (_authenticationService.IsAuthenticated())
+            if (_connectionService.IsConnected)
             {
-                await NavigateToAsync<MainViewModel>();
+                try
+                {
+                    if (_authenticationService.IsAuthenticated())
+                    {
+                        await NavigateToAsync<MainViewModel>();
+                    }
+                    else
+                    {
+                        await NavigateToAsync<LoginViewModel>();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"Error: {ex.Message}");
+
+                    await _dialogService.ShowDialog(
+                       "Unexpected error occurs, try again later",
+                       "Error",
+                       "Ok"
+                       );
+                }
             }
             else
             {
-                await NavigateToAsync<LoginViewModel>();
+                await _dialogService.ShowDialog(
+                        "Make shour you are connectet to internet",
+                        "No Internet Connection",
+                        "Ok"
+                        );
             }
+           
         }
 
         public async Task ClearBackStack()
