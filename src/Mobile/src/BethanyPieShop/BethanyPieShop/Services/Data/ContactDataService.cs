@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BethanyPieShop.Core.Services.Data
 {
-    public class ContactDataService
+    public class ContactDataService : IContactDataService
     {
         private readonly IRequestProvider _request;
 
