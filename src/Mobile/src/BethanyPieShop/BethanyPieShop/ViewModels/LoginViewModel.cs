@@ -40,6 +40,8 @@ namespace BethanyPieShop.Core.ViewModels
 
         public ICommand LoginCommand => new Command(OnLogin);
         public ICommand RegisterCommand => new Command(OnRegister);
+        public ICommand ValidateUserNameCommand => new Command( ()=> ValidateUserName());
+        public ICommand ValidatePasswordCommand => new Command( ()=> ValidatePassword());
 
         public ValidatableObject<string> UserName
         {
@@ -162,7 +164,9 @@ namespace BethanyPieShop.Core.ViewModels
         private void AddValidations()
         {
             _userName.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "A username is required." });
+            _userName.Validations.Add(new IsTooShortRule<string> { ValidationMessage = "Username length must be minimum of 4 characters." });
             _password.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "A password is required." });
+            _password.Validations.Add(new IsTooShortRule<string> { ValidationMessage = "Password length must be minimum of 4 characters." });
         }
     }
 }

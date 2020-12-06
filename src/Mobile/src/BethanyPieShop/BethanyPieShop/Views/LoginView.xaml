@@ -3,12 +3,103 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BethanyPieShop.Core.Views.LoginView"
              xmlns:controls="clr-namespace:BethanyPieShop.Core.Controls;assembly=BethanyPieShop.Core"
-             xmlns:utility="clr-namespace:BethanyPieShop.Core.Utility;assembly=BethanyPieShop.Core"
+             xmlns:utility="clr-namespace:BethanyPieShop.Core.Utility;assembly=BethanyPieShop.Core" 
+             xmlns:behavior="clr-namespace:BethanyPieShop.Core.Behaviors" 
+             xmlns:converters="clr-namespace:BethanyPieShop.Core.Converters"
              utility:ViewModelLocator.AutoWireViewModel="True"
-             >
-    <ContentPage.Content>
-      <StackLayout>
-          <Label Text="Hello Xamarin.Forms! - Login Page" />
-      </StackLayout>
-  </ContentPage.Content>
+             Title="Login"
+             BackgroundImageSource="darktexture.jpg">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="ErrorColor">#ff5252</Color>
+            <converters:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter" />
+            <Style x:Key="ValidationErrorLabelStyle"
+                   TargetType="{x:Type Label}">
+                <Setter Property="TextColor"
+                           Value="{StaticResource ErrorColor}" />
+                <Setter Property="FontSize"
+                           Value="{StaticResource LittleSize}" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid
+        Margin="40"     
+        >
+        <Grid.RowDefinitions>
+            <RowDefinition  Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackLayout 
+            HorizontalOptions="CenterAndExpand"
+            Grid.Row="0" 
+            Orientation="Vertical">
+            <Image Source="bethanylogo.png"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <Label FontSize="Medium" Text="Login" TextColor="{StaticResource WhiteColor}"/>
+                <Label FontSize="Medium" Text="|" TextColor="{StaticResource WhiteColor}"/>
+                <Grid>
+                    <Label FontSize="Medium" Text="Register" TextColor="{StaticResource WhiteColor}"/>
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer 
+                        Command="{Binding RegisterCommand}"
+                        />
+                    </Grid.GestureRecognizers>
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout Grid.Row="1" >
+            <Label Text="User Name" TextColor="{StaticResource WhiteColor}"/>
+            <Entry Text="{Binding UserName.Value, Mode=TwoWay}" TextColor="{StaticResource WhiteColor}">
+                <Entry.Behaviors>
+                    <behavior:EventToCommandBehavior
+                        EventName="TextChanged"
+                        Command="{Binding ValidateUserNameCommand}"
+                        />
+                </Entry.Behaviors>
+                <Entry.Triggers>
+                    <DataTrigger
+                        TargetType="Entry"
+                        Binding="{Binding UserName.Value}"
+                        Value="False"
+                        >
+                        <Setter Property="behavior:LineColorBehavior.LineColor" Value="{StaticResource ErrorColor}"/>
+                    </DataTrigger>
+                </Entry.Triggers>
+            </Entry>
+            <Label 
+					Text="{Binding UserName.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+					Style="{StaticResource ValidationErrorLabelStyle}" />
+
+            <Label Text="Password" TextColor="{StaticResource WhiteColor}" />
+            <Entry Text="{Binding Password.Value, Mode=TwoWay}" TextColor="{StaticResource WhiteColor}" IsPassword="True">
+                <Entry.Behaviors>
+                    <behavior:EventToCommandBehavior
+                        EventName="TextChanged"
+                        Command="{Binding ValidatePasswordCommand}"
+                        />
+                </Entry.Behaviors>
+                <Entry.Triggers>
+                    <DataTrigger
+                        TargetType="Entry"
+                        Binding="{Binding Password.Value}"
+                        Value="False"
+                        >
+                        <Setter Property="behavior:LineColorBehavior.LineColor" Value="{StaticResource ErrorColor}"/>
+                    </DataTrigger>
+                </Entry.Triggers>
+            </Entry>
+            <Label 
+					Text="{Binding Password.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+					Style="{StaticResource ValidationErrorLabelStyle}" />
+
+           
+        </StackLayout>
+        <Button Grid.Row="3" Text="Login" CornerRadius="10" BackgroundColor="{StaticResource LightGreenColor}" Command="{Binding LoginCommand}"/>
+    </Grid>
+       
+       
+   
 </ContentPage>
