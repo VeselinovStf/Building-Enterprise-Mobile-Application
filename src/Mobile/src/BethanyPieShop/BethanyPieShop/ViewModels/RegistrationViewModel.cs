@@ -45,6 +45,12 @@ namespace BethanyPieShop.Core.ViewModels
         public ICommand RegisterCommand => new Command(OnRegister);
         public ICommand LoginCommand => new Command(OnLogin);
 
+        public ICommand ValidateFirstNameCommand => new Command(() => ValidateFirstName());
+        public ICommand ValidateLastNameCommand => new Command(() => ValidateLastName());
+        public ICommand ValidateUserNameCommand => new Command(() => ValidateUserName());
+        public ICommand ValidateEmailCommand => new Command(() => ValidateEmail());
+        public ICommand ValidatePasswordCommand => new Command(() => ValidatePassword());
+
         public bool IsValid
         {
             get
@@ -168,6 +174,32 @@ namespace BethanyPieShop.Core.ViewModels
             }
 
             IsBusy = false;
+        }
+
+
+        private bool ValidateFirstName()
+        {
+            return _firstName.Validate();
+        }
+
+        private bool ValidateLastName()
+        {
+            return _lastName.Validate();
+        }
+
+        private bool ValidateEmail()
+        {
+            return _email.Validate();
+        }
+
+        private bool ValidateUserName()
+        {
+            return _userName.Validate();
+        }
+
+        private bool ValidatePassword()
+        {
+            return _password.Validate();
         }
 
         private bool Validate()

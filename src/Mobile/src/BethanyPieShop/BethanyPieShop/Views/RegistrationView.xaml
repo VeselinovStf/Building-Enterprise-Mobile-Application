@@ -4,10 +4,167 @@
              x:Class="BethanyPieShop.Core.Views.RegistrationView"
              xmlns:utility="clr-namespace:BethanyPieShop.Core.Utility;assembly=BethanyPieShop.Core" 
              utility:ViewModelLocator.AutoWireViewModel="True"
+              xmlns:behavior="clr-namespace:BethanyPieShop.Core.Behaviors" 
+             BackgroundImageSource="darktexture.jpg"
              >
-    <ContentPage.Content>
-      <StackLayout>
-          <Label Text="Hello Xamarin.Forms!" />
-      </StackLayout>
-  </ContentPage.Content>
+    <ScrollView>
+        <Grid
+        Margin="40"         
+        >
+            <Grid.RowDefinitions>
+                <RowDefinition  Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackLayout 
+            HorizontalOptions="CenterAndExpand"
+            Grid.Row="0" 
+            Orientation="Vertical">
+                <Image Source="bethanylogo.png" HeightRequest="150"/>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <Grid>
+                        <Label FontSize="Medium" Text="Login" TextColor="{StaticResource WhiteColor}"/>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer 
+                        Command="{Binding LoginCommand}"
+                        />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                    <Label FontSize="Medium" Text="|" TextColor="{StaticResource WhiteColor}"/>
+                    <Label FontSize="Medium" Text="Register" TextColor="{StaticResource WhiteColor}"/>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout Grid.Row="1" >
+                <Label Text="First Name" TextColor="{StaticResource WhiteColor}"/>
+                <Entry Text="{Binding FirstName.Value, Mode=TwoWay}" TextColor="{StaticResource WhiteColor}">
+                    <Entry.Behaviors>
+                        <behavior:EventToCommandBehavior
+                        EventName="TextChanged"
+                        Command="{Binding ValidateFirstNameCommand}"
+                        />
+                    </Entry.Behaviors>
+                    <Entry.Triggers>
+                        <DataTrigger
+                        TargetType="Entry"
+                        Binding="{Binding FirstName.Value}"
+                        Value="False"
+                        >
+                            <Setter Property="behavior:LineColorBehavior.LineColor" Value="{StaticResource ErrorColor}"/>
+                        </DataTrigger>
+                    </Entry.Triggers>
+                </Entry>
+                <Label 
+					Text="{Binding FirstName.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+					Style="{StaticResource ValidationErrorLabelStyle}" />
+            </StackLayout>
+            <StackLayout Grid.Row="2">
+                <Label Text="Last Name" TextColor="{StaticResource WhiteColor}"/>
+                <Entry Text="{Binding LastName.Value, Mode=TwoWay}" TextColor="{StaticResource WhiteColor}">
+                    <Entry.Behaviors>
+                        <behavior:EventToCommandBehavior
+                        EventName="TextChanged"
+                        Command="{Binding ValidateLastNameCommand}"
+                        />
+                    </Entry.Behaviors>
+                    <Entry.Triggers>
+                        <DataTrigger
+                        TargetType="Entry"
+                        Binding="{Binding LastName.Value}"
+                        Value="False"
+                        >
+                            <Setter Property="behavior:LineColorBehavior.LineColor" Value="{StaticResource ErrorColor}"/>
+                        </DataTrigger>
+                    </Entry.Triggers>
+                </Entry>
+                <Label 
+					Text="{Binding LastName.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+					Style="{StaticResource ValidationErrorLabelStyle}" />
+            </StackLayout>
+
+            <StackLayout Grid.Row="3">
+                <Label Text="User Name" TextColor="{StaticResource WhiteColor}"/>
+                <Entry Text="{Binding UserName.Value, Mode=TwoWay}" TextColor="{StaticResource WhiteColor}">
+                    <Entry.Behaviors>
+                        <behavior:EventToCommandBehavior
+                        EventName="TextChanged"
+                        Command="{Binding ValidateUserNameCommand}"
+                        />
+                    </Entry.Behaviors>
+                    <Entry.Triggers>
+                        <DataTrigger
+                        TargetType="Entry"
+                        Binding="{Binding UserName.Value}"
+                        Value="False"
+                        >
+                            <Setter Property="behavior:LineColorBehavior.LineColor" Value="{StaticResource ErrorColor}"/>
+                        </DataTrigger>
+                    </Entry.Triggers>
+                </Entry>
+                <Label 
+					Text="{Binding UserName.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+					Style="{StaticResource ValidationErrorLabelStyle}" />
+            </StackLayout>
+
+            <StackLayout Grid.Row="4">
+
+                <Label Text="Email" TextColor="{StaticResource WhiteColor}"/>
+                <Entry Text="{Binding Email.Value, Mode=TwoWay}" TextColor="{StaticResource WhiteColor}">
+                    <Entry.Behaviors>
+                        <behavior:EventToCommandBehavior
+                        EventName="TextChanged"
+                        Command="{Binding ValidateEmailCommand}"
+                        />
+                    </Entry.Behaviors>
+                    <Entry.Triggers>
+                        <DataTrigger
+                        TargetType="Entry"
+                        Binding="{Binding Email.Value}"
+                        Value="False"
+                        >
+                            <Setter Property="behavior:LineColorBehavior.LineColor" Value="{StaticResource ErrorColor}"/>
+                        </DataTrigger>
+                    </Entry.Triggers>
+                </Entry>
+                <Label 
+					Text="{Binding Email.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+					Style="{StaticResource ValidationErrorLabelStyle}" />
+
+            </StackLayout>
+
+            <StackLayout Grid.Row="5">
+                <Label Text="Password" TextColor="{StaticResource WhiteColor}"/>
+                <Entry Text="{Binding Password.Value, Mode=TwoWay}" TextColor="{StaticResource WhiteColor}" IsPassword="True">
+                    <Entry.Behaviors>
+                        <behavior:EventToCommandBehavior
+                        EventName="TextChanged"
+                        Command="{Binding ValidatePasswordCommand}"
+                        />
+                    </Entry.Behaviors>
+                    <Entry.Triggers>
+                        <DataTrigger
+                        TargetType="Entry"
+                        Binding="{Binding Password.Value}"
+                        Value="False"
+                        >
+                            <Setter Property="behavior:LineColorBehavior.LineColor" Value="{StaticResource ErrorColor}"/>
+                        </DataTrigger>
+                    </Entry.Triggers>
+                </Entry>
+                <Label 
+					Text="{Binding Password.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+					Style="{StaticResource ValidationErrorLabelStyle}" />
+
+            </StackLayout>
+
+
+            <Button Grid.Row="6" Text="Register" CornerRadius="10" BackgroundColor="{StaticResource LightGreenColor}" Command="{Binding RegisterCommand}"/>
+        </Grid>
+    </ScrollView>
+   
+
 </ContentPage>

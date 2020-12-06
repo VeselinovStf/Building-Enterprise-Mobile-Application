@@ -3,7 +3,7 @@
   <item>
     <bitmap
         android:src="@drawable/splash"
-        android:gravity="fill"
-        android:scaleType="fitXY" />
+         android:tileMode="disabled"
+        android:gravity="center"/>
   </item>
 </layer-list>
