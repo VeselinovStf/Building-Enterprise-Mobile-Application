@@ -29,7 +29,7 @@ Pluralsight "Building an Enterprise Mobile Application with Xamarin.Forms" cours
 
 ### Status
 
-- On going
+- Complete
 
 # Course Project Info
 

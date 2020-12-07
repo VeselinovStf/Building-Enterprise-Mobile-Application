@@ -21,7 +21,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BethanyPieShop.iOS", "src\B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BethanyPieShop.Core", "src\BethanyPieShop\BethanyPieShop\BethanyPieShop.Core.csproj", "{34F96301-DC1D-4152-B51C-EFA05B8E2E78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BethanyPieShop.UnitTests", "test\BethanyPieShop.UnitTests\BethanyPieShop.UnitTests.csproj", "{B577CFB6-B7BE-467A-BF64-FFB84278E979}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BethanyPieShop.UnitTests", "test\BethanyPieShop.UnitTests\BethanyPieShop.UnitTests.csproj", "{B577CFB6-B7BE-467A-BF64-FFB84278E979}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C9E23560-EF1E-4C23-8B95-76EF4A6098F9}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\README.md = ..\..\README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
