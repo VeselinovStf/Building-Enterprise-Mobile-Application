@@ -2,6 +2,7 @@
 using BethanyPieShop.Core.Validation;
 using BethanyPieShop.Core.ViewModels.Base;
 using System;
+using System.Diagnostics;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -116,6 +117,7 @@ namespace BethanyPieShop.Core.ViewModels
                     {
                         //TODO: Mange exeptions logging
                         //TODO: Clear Fields
+                        Debug.WriteLine($"ERROR: {ex.Message}");
 
                         await _dialogService.ShowDialog(
                             "This username/password combination isn't known",

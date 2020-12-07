@@ -35,6 +35,11 @@ namespace BethanysPieShop.API
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
+                .ConfigureLogging( op =>
+                {
+                    op.AddConsole();
+                    
+                })
                 .Build();
     }
 }

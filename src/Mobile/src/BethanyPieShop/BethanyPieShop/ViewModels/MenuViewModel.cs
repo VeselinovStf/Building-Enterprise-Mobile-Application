@@ -1,4 +1,5 @@
-﻿using BethanyPieShop.Core.Contracts;
+﻿using BethanyPieShop.Core.Constants.General;
+using BethanyPieShop.Core.Contracts;
 using BethanyPieShop.Core.Enumerations;
 using BethanyPieShop.Core.Models;
 using BethanyPieShop.Core.ViewModels.Base;
@@ -47,7 +48,8 @@ namespace BethanyPieShop.Core.ViewModels
             {
                 _settingsService.UserIdSetting = null;
                 _settingsService.UserNameSetting = null;
-               await _navigationService.ClearBackStack();
+
+                MessagingCenter.Send(this, MessagingConstants.LogOut);              
             }
 
             var type = menuItem?.ViewModelToLoad;

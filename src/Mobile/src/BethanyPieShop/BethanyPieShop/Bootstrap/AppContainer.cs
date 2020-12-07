@@ -29,6 +29,7 @@ namespace BethanyPieShop.Core.Bootstrap
             builder.RegisterType<ShoppingCartViewModel>().SingleInstance();
             builder.RegisterType<MenuViewModel>();
             builder.RegisterType<HomeViewModel>();
+            builder.RegisterType<LogOutViewModel>();
 
             //services - data
             builder.RegisterType<CatalogDataService>().As<ICatalogDataService>();

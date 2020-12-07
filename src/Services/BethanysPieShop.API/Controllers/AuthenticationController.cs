@@ -2,20 +2,36 @@
 using BethanysPieShop.API.Models;
 using BethanysPieShop.API.ViewModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace BethanysPieShop.API.Controllers
 {
     [Route("api/[controller]")]
     public class AuthenticationController : Controller
     {
-        public AuthenticationController()
+        private readonly ILogger<AuthenticationController> _logger;
+
+        public AuthenticationController(ILogger<AuthenticationController> logger)
         {
+            _logger = logger;
+        }
+
+        [HttpGet]
+        public IActionResult TEST()
+        {
+            _logger.LogInformation($"TESTTTTTTTTT IS OOOOOOOOOOOOOOOOKKKKKKK");
+
+            throw new Exception("asdddddddddddddddddd");
+
+            return Ok();
         }
 
         [HttpPost]
         [Route("[action]")]
-        public IActionResult Authenticate(string userName, string password)
+        public IActionResult Authenticate([FromBody]AuthenticationRequest request)
         {
+            _logger.LogInformation($"AUTHENTICATION: {request.UserName}");
+
             return Ok(new AuthenticationResponse
             {
                 IsAuthenticated = true,
@@ -25,7 +41,7 @@ namespace BethanysPieShop.API.Controllers
                     Email = "test@something.com",
                     FirstName = "Gill",
                     LastName = "Cleeren",
-                    UserName = userName
+                    UserName = request.UserName
                 }
             });
         }
@@ -34,6 +50,8 @@ namespace BethanysPieShop.API.Controllers
         [Route("[action]")]
         public IActionResult Register(string firstName, string lastName, string email, string userName, string password)
         {
+            _logger.LogInformation($"REGISTRATION: {email}");
+
             return Ok(new AuthenticationResponse
             {
                 IsAuthenticated = true,

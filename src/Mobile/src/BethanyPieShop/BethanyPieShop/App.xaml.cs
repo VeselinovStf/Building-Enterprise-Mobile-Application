@@ -29,6 +29,9 @@ namespace BethanyPieShop.Core
 
             var shoppingCartViewModel = AppContainer.Resolve<ShoppingCartViewModel>();
             shoppingCartViewModel.InitializeMessenger();
+
+            var logOutViewModel = AppContainer.Resolve<LogOutViewModel>();
+            logOutViewModel.InitializeMessaeger();
         }
 
         protected override void OnStart()

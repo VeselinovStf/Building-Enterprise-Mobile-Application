@@ -88,7 +88,7 @@ namespace BethanyPieShop.Core.Services.Data
             catch (Exception e)
             {
 
-                Debug.WriteLine($"{ e.GetType().Name + " : " + e.Message}");
+                Debug.WriteLine($"ERROR: { e.GetType().Name + " : " + e.Message}");
                 throw;
             }
         }

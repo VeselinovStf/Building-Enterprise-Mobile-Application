@@ -12,7 +12,7 @@ namespace BethanyPieShop.Core.CacheStrategy
     {
         protected IBlobCache Cache;
 
-        public BaseCacheStrategy(IBlobCache cache)
+        public BaseCacheStrategy(IBlobCache cache = null)
         {
             Cache = cache ?? BlobCache.LocalMachine;
         }

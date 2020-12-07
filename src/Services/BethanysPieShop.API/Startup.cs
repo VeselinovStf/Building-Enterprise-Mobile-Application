@@ -66,8 +66,9 @@ namespace BethanysPieShop.API
                 app.UseDeveloperExceptionPage();
             }
 
+            
             app.UseMvcWithDefaultRoute();
-
+            
             app.UseSwagger()
                 .UseSwaggerUI(c =>
                 {
