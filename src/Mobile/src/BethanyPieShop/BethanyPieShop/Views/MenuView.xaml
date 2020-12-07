@@ -6,7 +6,7 @@
              xmlns:templates="clr-namespace:BethanyPieShop.Core.Templates"
              xmlns:utility="clr-namespace:BethanyPieShop.Core.Utility;assembly=BethanyPieShop.Core"
              utility:ViewModelLocator.AutoWireViewModel="True"
-             Title=" ">
+             Title="Bethany's Pie Store">
     <Grid RowSpacing="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="2*" />

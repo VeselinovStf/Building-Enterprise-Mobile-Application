@@ -6,6 +6,7 @@
              utility:ViewModelLocator.AutoWireViewModel="True"
               xmlns:behavior="clr-namespace:BethanyPieShop.Core.Behaviors" 
              BackgroundImageSource="darktexture.jpg"
+             Title="Registration"
              >
     <ScrollView>
         <Grid
