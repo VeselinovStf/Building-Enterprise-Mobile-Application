@@ -1,6 +1,8 @@
 # Building-Enterprise-Mobile-Application
 Pluralsight "Building an Enterprise Mobile Application with Xamarin.Forms" course repository
 
+![Completed Project Screanshots](https://github.com/VeselinovStf/Building-Enterprise-Mobile-Application/blob/main/src/Mobile/projectImg/demo.bmp)
+
 ### Course Info
 
 - Xamarin.Forms is Microsoft's recommended way of building mobile, cross-platform applications. This course will teach you how to build mobile applications for the enterprise with the MVVM pattern, dependency injection, commanding, testing, and more.
